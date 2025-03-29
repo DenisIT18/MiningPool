@@ -3,56 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Mining Pool</title>
+    <title>Майнинг-Пул | Статистика</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav a, button {
+            color: #fff;
+            text-decoration: none;
+            background: #007bff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        nav a:hover, button:hover {
+            background: #0056b3;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 10px;
+        }
+        th {
+            background-color: #222;
+        }
+        footer {
+            background-color: #1e1e1e;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <h1>AI-оптимизированный Bitcoin Mining Pool</h1>
+        <h1 id="title">Майнинг-Пул Bitcoin</h1>
         <nav>
-            <a href="dashboard.html" data-lang="dashboard">Дашборд</a>
-            <a href="payouts.html" data-lang="payouts">Выплаты</a>
-            <a href="settings.html" data-lang="settings">Настройки</a>
-            <button id="theme-toggle">🌙</button>
-            <select id="language-selector">
-                <option value="ru">🇷🇺 RU</option>
-                <option value="en">🇺🇸 EN</option>
-            </select>
-            <div id="user-menu">
-                <span id="user-name">Гость</span>
-                <button id="logout-btn" class="hidden">Выйти</button>
-            </div>
+            <ul>
+                <li><a href="dashboard.html" id="nav-dashboard">Статистика</a></li>
+                <li><a href="tokens.html" id="nav-tokens">Купить токены</a></li>
+                <li><a href="staking.html" id="nav-staking">Стейкинг</a></li>
+                <li><a href="profile.html" id="nav-profile">Профиль</a></li>
+                <li><button onclick="toggleLanguage()" id="lang-btn">EN</button></li>
+            </ul>
         </nav>
     </header>
-
-    <section id="auth">
-        <h2 data-lang="auth_title">Авторизация</h2>
-        <input type="text" id="username" placeholder="Введите логин" required>
-        <input type="password" id="password" placeholder="Введите пароль" required>
-        <button id="login-btn" data-lang="login">Войти</button>
-        <button id="register-btn" data-lang="register">Регистрация</button>
+    
+    <section id="transactions" class="container">
+        <h2 id="transactions-title">Активные транзакции</h2>
+        <p><strong>Текущий блок:</strong> <span id="current-block">---</span></p>
+        <p><strong>Общий хешрейт:</strong> <span id="hashrate">---</span></p>
+        
+        <h3>Последние блоки</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Блок</th>
+                    <th>Награда</th>
+                    <th>Майнер</th>
+                    <th>Время</th>
+                </tr>
+            </thead>
+            <tbody id="transactions-table">
+                <tr><td colspan="4">Загрузка данных...</td></tr>
+            </tbody>
+        </table>
     </section>
+    
+    <footer>
+        <p>&copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+    </footer>
 
-    <section id="stats" class="hidden">
-        <h2 data-lang="pool_stats">Статистика пула</h2>
-        <div class="stat-card">
-            <p data-lang="hashrate">Общая мощность:</p>
-            <span id="hashrate">Загрузка...</span>
-        </div>
-        <div class="stat-card">
-            <p data-lang="miners">Активные майнеры:</p>
-            <span id="miners">Загрузка...</span>
-        </div>
-        <div class="stat-card">
-            <p data-lang="blocks">Найденные блоки:</p>
-            <span id="blocks">Загрузка...</span>
-        </div>
-        <h3 data-lang="your_info">Ваши данные:</h3>
-        <p><strong>ID:</strong> <span id="user-id">-</span></p>
-        <p><strong>BTC-кошелек:</strong> <span id="btc-wallet">-</span></p>
-    </section>
-
+    <script>
+        function fetchTransactions() {
+            // Здесь заглушка, можно подключить API пула
+            const transactions = [
+                { block: 789456, reward: "6.25 BTC", miner: "0x1234abcd", time: "10 мин назад" },
+                { block: 789455, reward: "6.25 BTC", miner: "0x5678efgh", time: "20 мин назад" },
+                { block: 789454, reward: "6.25 BTC", miner: "0x9abcijkl", time: "30 мин назад" }
+            ];
+            
+            document.getElementById("current-block").innerText = transactions[0].block;
+            document.getElementById("hashrate").innerText = "152 PH/s";
+            
+            let table = document.getElementById("transactions-table");
+            table.innerHTML = "";
+            transactions.forEach(tx => {
+                let row = `<tr>
+                    <td>${tx.block}</td>
+                    <td>${tx.reward}</td>
+                    <td>${tx.miner}</td>
+                    <td>${tx.time}</td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+        
+        document.addEventListener("DOMContentLoaded", fetchTransactions);
+    </script>
 </body>
 </html>

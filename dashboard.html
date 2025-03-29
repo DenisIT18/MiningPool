@@ -3,34 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Статистика - Майнинг-Пул</title>
+    <title id="title">Майнинг-Пул Bitcoin</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>Статистика</h1>
+        <h1 id="title">Майнинг-Пул Bitcoin</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="tokens.html">Купить токены</a></li>
-                <li><a href="staking.html">Стейкинг</a></li>
-                <li><a href="profile.html">Профиль</a></li>
+                <li><a href="dashboard.html" id="nav-dashboard">Статистика</a></li>
+                <li><a href="Tokens.html" id="nav-tokens">Купить токены</a></li>
+                <li><a href="Staking.html" id="nav-staking">Стейкинг</a></li>
+                <li><a href="Profile.html" id="nav-profile">Профиль</a></li>
+                <li><button onclick="toggleLanguage()" id="lang-btn">EN</button></li>
             </ul>
         </nav>
     </header>
-    
-    <main>
-        <section class="container">
-            <h2>Текущая статистика</h2>
-            <p>Активные майнеры: <span id="miners-count">0</span></p>
-            <p>Текущий блок: <span id="current-block">---</span></p>
-            <p>Общий хешрейт: <span id="hashrate">0 TH/s</span></p>
-        </section>
-    </main>
-    
+
+    <section class="container">
+        <h2 id="dashboard-title">Текущая статистика</h2>
+        <p id="miners-label">Активные майнеры: <span id="miners-count">12</span></p>
+        <p id="block-label">Текущий блок: <span id="current-block">123456</span></p>
+        <p id="hashrate-label">Общий хешрейт: <span id="hashrate">500 TH/s</span></p>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+        <p>&copy; 2025 Bitcoin Solo Mining Pool</p>
     </footer>
 </body>
 </html>

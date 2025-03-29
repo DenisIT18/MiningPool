@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стейкинг - Майнинг-Пул</title>
+    <title id="title">Стейкинг</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>Стейкинг</h1>
+        <h1 id="title">Стейкинг токенов</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="dashboard.html">Статистика</a></li>
-                <li><a href="tokens.html">Купить токены</a></li>
-                <li><a href="profile.html">Профиль</a></li>
+                <li><a href="dashboard.html" id="nav-dashboard">Статистика</a></li>
+                <li><a href="Tokens.html" id="nav-tokens">Купить токены</a></li>
+                <li><a href="Staking.html" id="nav-staking">Стейкинг</a></li>
+                <li><a href="Profile.html" id="nav-profile">Профиль</a></li>
+                <li> <a href="index.html" id="nav-profile"> Главная</a></li>
+                <li><button onclick="toggleLanguage()" id="lang-btn">EN</button></li>
             </ul>
         </nav>
     </header>
-    
-    <main>
-        <section class="container">
-            <h2>Стейкинг токенов</h2>
-            <button onclick="stakeTokens()">Отправить в стейкинг</button>
-            <p>Токены сгорят через: <span id="burn-timer">100</span> часов</p>
-        </section>
-    </main>
-    
+
+    <section class="container">
+        <h2 id="staking-title">Стейкинг токенов</h2>
+        <p id="balance-label">Ваш баланс: <span id="balance">1000</span> BTC</p>
+        <button onclick="stakeTokens()" id="stake-btn">Отправить в стейкинг</button>
+        <p id="burn-timer-text">Токены сгорят через: <span id="burn-timer">30 дней</span></p>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+        <p>&copy; 2025 Bitcoin Solo Mining Pool</p>
     </footer>
 </body>
 </html>
