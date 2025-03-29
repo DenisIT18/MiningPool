@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Майнинг-Пул</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="title">Bitcoin Solo Mining Pool</h1>
+        <nav>
+            <ul>
+                <li><a href="#dashboard" id="nav-dashboard">Статистика</a></li>
+                <li><a href="#tokens" id="nav-tokens">Купить токены</a></li>
+                <li><a href="#staking" id="nav-staking">Стейкинг</a></li>
+                <li><a href="#profile" id="nav-profile">Профиль</a></li>
+                <li><button onclick="toggleLanguage()" id="lang-btn">EN</button></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="register" class="container">
+            <h2 id="register-title">Регистрация</h2>
+            <input type="text" id="username" placeholder="Имя пользователя">
+            <input type="password" id="password" placeholder="Пароль">
+            <button onclick="registerUser()" id="register-btn">Зарегистрироваться</button>
+        </section>
+        
+        <section id="auth" class="container">
+            <h2 id="auth-title">Авторизация</h2>
+            <input type="text" id="login-username" placeholder="Имя пользователя">
+            <input type="password" id="login-password" placeholder="Пароль">
+            <button onclick="loginUser()" id="login-btn">Войти</button>
+        </section>
+        
+        <section id="dashboard" class="container" style="display: none;">
+            <h2 id="dashboard-title">Текущая статистика</h2>
+            <p id="miners-label">Активные майнеры: <span id="miners-count">0</span></p>
+            <p id="block-label">Текущий блок: <span id="current-block">---</span></p>
+            <p id="hashrate-label">Общий хешрейт: <span id="hashrate">0 TH/s</span></p>
+        </section>
+        
+        <section id="tokens" class="container" style="display: none;">
+            <h2 id="tokens-title">Купить токены</h2>
+            <input type="number" id="token-amount" placeholder="Введите количество">
+            <button onclick="buyTokens()" id="buy-btn">Купить</button>
+            <p id="balance-label">Ваш баланс: <span id="token-balance">0</span> токенов</p>
+        </section>
+        
+        <section id="staking" class="container" style="display: none;">
+            <h2 id="staking-title">Стейкинг токенов</h2>
+            <button onclick="stakeTokens()" id="stake-btn">Отправить в стейкинг</button>
+            <p id="burn-timer-text">Токены сгорят через: <span id="burn-timer">100</span> часов</p>
+        </section>
+        
+        <section id="profile" class="container" style="display: none;">
+            <h2 id="profile-title">Профиль</h2>
+            <p>ID: <span id="user-id">---</span></p>
+            <p>BTC-кошелек: <span id="btc-wallet">---</span></p>
+            <button onclick="logoutUser()" id="logout-btn">Выйти</button>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+    </footer>
+    
+    <script>
+        function toggleLanguage() {
+            let currentLang = document.documentElement.lang;
+            let newLang = currentLang === "ru" ? "en" : "ru";
+            localStorage.setItem("language", newLang);
+            location.reload();
+        }
+
+        function applyLanguage() {
+            let lang = localStorage.getItem("language") || "ru";
+            document.documentElement.lang = lang;
+            document.getElementById("lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+            
+            const translations = {
+                ru: {
+                    "title": "Майнинг-Пул",
+                    "nav-dashboard": "Статистика",
+                    "nav-tokens": "Купить токены",
+                    "nav-staking": "Стейкинг",
+                    "nav-profile": "Профиль",
+                    "register-title": "Регистрация",
+                    "register-btn": "Зарегистрироваться",
+                    "auth-title": "Авторизация",
+                    "login-btn": "Войти",
+                    "dashboard-title": "Текущая статистика",
+                    "tokens-title": "Купить токены",
+                    "staking-title": "Стейкинг токенов",
+                    "profile-title": "Профиль",
+                    "logout-btn": "Выйти"
+                },
+                en: {
+                    "title": "Mining Pool",
+                    "nav-dashboard": "Statistics",
+                    "nav-tokens": "Buy Tokens",
+                    "nav-staking": "Staking",
+                    "nav-profile": "Profile",
+                    "register-title": "Registration",
+                    "register-btn": "Register",
+                    "auth-title": "Login",
+                    "login-btn": "Login",
+                    "dashboard-title": "Current Statistics",
+                    "tokens-title": "Buy Tokens",
+                    "staking-title": "Token Staking",
+                    "profile-title": "Profile",
+                    "logout-btn": "Logout"
+                }
+            };
+            
+            for (let key in translations[lang]) {
+                let element = document.getElementById(key);
+                if (element) {
+                    element.textContent = translations[lang][key];
+                }
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", applyLanguage);
+    </script>
+</body>
+</html>

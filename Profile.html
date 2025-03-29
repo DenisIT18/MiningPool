@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Профиль</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="dashboard.html">Статистика</a></li>
+                <li><a href="tokens.html">Купить токены</a></li>
+                <li><a href="staking.html">Стейкинг</a></li>
+                <li><button onclick="toggleTheme()">Сменить тему</button></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="container">
+            <h2>Ваш профиль</h2>
+            <p>ID: <span id="user-id">---</span></p>
+            <p>BTC-кошелек: <span id="btc-wallet">---</span></p>
+            <button onclick="logoutUser()">Выйти</button>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        function applyTheme() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", applyTheme);
+    </script>
+</body>
+</html>

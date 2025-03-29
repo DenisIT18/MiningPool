@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная статистика майнинга</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Статистика майнинга</h1>
+    </header>
+
+    <section id="stats">
+        <h2>График доходности (BTC)</h2>
+        <canvas id="incomeChart"></canvas>
+        
+        <h2>Сложность сети</h2>
+        <p id="networkDifficulty">Загрузка...</p>
+
+        <h2>Онлайн-майнеры</h2>
+        <p id="onlineMiners">Загрузка...</p>
+    </section>
+
+    <script>
+        // Инициализация WebSocket
+        const socket = new WebSocket('wss://miningpool.ai/stats');
+        
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            document.getElementById('networkDifficulty').textContent = data.difficulty;
+            document.getElementById('onlineMiners').textContent = data.onlineMiners;
+            updateIncomeChart(data.incomeHistory);
+        };
+        
+        // График доходности
+        const ctx = document.getElementById('incomeChart').getContext('2d');
+        let incomeChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Доходность (BTC)',
+                    data: [],
+                    borderColor: 'green',
+                    fill: false
+                }]
+            }
+        });
+        
+        function updateIncomeChart(incomeData) {
+            incomeChart.data.labels = incomeData.map(item => item.date);
+            incomeChart.data.datasets[0].data = incomeData.map(item => item.amount);
+            incomeChart.update();
+        }
+    </script>
+</body>
+</html>

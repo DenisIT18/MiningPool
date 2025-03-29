@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Mining Pool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>AI-оптимизированный Bitcoin Mining Pool</h1>
+        <nav>
+            <a href="dashboard.html" data-lang="dashboard">Дашборд</a>
+            <a href="payouts.html" data-lang="payouts">Выплаты</a>
+            <a href="settings.html" data-lang="settings">Настройки</a>
+            <button id="theme-toggle">🌙</button>
+            <select id="language-selector">
+                <option value="ru">🇷🇺 RU</option>
+                <option value="en">🇺🇸 EN</option>
+            </select>
+            <div id="user-menu">
+                <span id="user-name">Гость</span>
+                <button id="logout-btn" class="hidden">Выйти</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="auth">
+        <h2 data-lang="auth_title">Авторизация</h2>
+        <input type="text" id="username" placeholder="Введите логин" required>
+        <input type="password" id="password" placeholder="Введите пароль" required>
+        <button id="login-btn" data-lang="login">Войти</button>
+        <button id="register-btn" data-lang="register">Регистрация</button>
+    </section>
+
+    <section id="stats" class="hidden">
+        <h2 data-lang="pool_stats">Статистика пула</h2>
+        <div class="stat-card">
+            <p data-lang="hashrate">Общая мощность:</p>
+            <span id="hashrate">Загрузка...</span>
+        </div>
+        <div class="stat-card">
+            <p data-lang="miners">Активные майнеры:</p>
+            <span id="miners">Загрузка...</span>
+        </div>
+        <div class="stat-card">
+            <p data-lang="blocks">Найденные блоки:</p>
+            <span id="blocks">Загрузка...</span>
+        </div>
+        <h3 data-lang="your_info">Ваши данные:</h3>
+        <p><strong>ID:</strong> <span id="user-id">-</span></p>
+        <p><strong>BTC-кошелек:</strong> <span id="btc-wallet">-</span></p>
+    </section>
+
+</body>
+</html>
