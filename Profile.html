@@ -1,69 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Профиль пользователя</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <header class="bg-gray-900 text-white p-4">
+  <!-- Header -->
+  <header class="bg-gray-900 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <h1 id="title" class="text-xl font-bold">Профиль пользователя</h1>
       <nav>
-        <ul class="flex space-x-4 text-sm">
+        <ul class="flex flex-wrap gap-4 text-sm">
           <li><a id="nav-dashboard" href="dashboard.html" class="hover:underline">Статистика</a></li>
           <li><a id="nav-tokens" href="Tokens.html" class="hover:underline">Купить токены</a></li>
           <li><a id="nav-staking" href="Staking.html" class="hover:underline">Стейкинг</a></li>
           <li><a id="nav-profile" href="Profile.html" class="font-bold underline">Профиль</a></li>
           <li><a id="nav-index" href="index.html" class="hover:underline">Главная</a></li>
+          <li><a id="nav-dashboard-ui" href="Dashboard UI Upgrade.html" class="hover:underline">Статистика UI</a></li>
           <li><button id="lang-btn" onclick="toggleLanguage()" class="ml-2 bg-white text-black px-2 py-1 rounded">EN</button></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto py-10 px-4 max-w-2xl">
-    <div class="bg-white p-8 rounded-lg shadow-md">
+  <!-- Main -->
+  <main class="container mx-auto py-10 px-4 max-w-3xl">
+
+    <!-- Auth Block -->
+    <div class="bg-white p-8 rounded-lg shadow-lg mb-10">
       <h2 id="auth-title" class="text-2xl font-bold mb-6">Авторизация</h2>
       <form id="login-form" class="space-y-4">
-        <input id="auth-email" type="email" placeholder="Email" required class="w-full px-4 py-2 border rounded">
-        <input id="auth-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded">
+        <input id="auth-email" type="text" placeholder="Bitcoin-кошелёк (хэш)" required class="w-full px-4 py-2 border rounded" />
+        <input id="auth-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
         <div class="flex justify-between items-center">
           <label class="flex items-center space-x-2">
-            <input type="checkbox" id="auth-remember"> <span id="auth-remember-label">Запомнить меня</span>
+            <input type="checkbox" id="auth-remember" />
+            <span id="auth-remember-label">Запомнить меня</span>
           </label>
           <a id="auth-forgot" href="#" class="text-sm text-indigo-600 hover:underline">Забыли пароль?</a>
         </div>
         <button id="auth-login-btn" type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg py-3 rounded">Войти</button>
       </form>
+    </div>
 
-      <div class="mt-6 text-center">
-        <p id="auth-alt-text" class="text-sm text-gray-600 mb-2">Или войдите через</p>
-        <div class="flex justify-center gap-4">
-          <button id="auth-google" onclick="oauthLogin('google')" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Google</button>
-          <button id="auth-github" onclick="oauthLogin('github')" class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">GitHub</button>
+    <!-- ASIC Setup + Stats -->
+    <div class="bg-white p-8 rounded-lg shadow-lg mb-10">
+      <h2 class="text-2xl font-bold mb-6">Подключение ASIC</h2>
+      <form id="asic-form" class="space-y-4">
+        <input id="asic-id" type="text" placeholder="Введите ID вашего ASIC или API-ключ" class="w-full px-4 py-2 border rounded" />
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-3 rounded">Подключить устройство</button>
+      </form>
+
+      <!-- Персональная статистика -->
+      <div id="asic-stats" class="mt-8 hidden">
+        <h3 class="text-xl font-semibold mb-4">Персональная статистика</h3>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="bg-gray-50 p-4 rounded shadow">
+            <p class="text-gray-600">Хэшрейт</p>
+            <p class="font-bold text-lg">97.5 TH/s</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded shadow">
+            <p class="text-gray-600">Доход за сутки</p>
+            <p class="font-bold text-lg">0.00041 BTC</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded shadow">
+            <p class="text-gray-600">Время в сети</p>
+            <p class="font-bold text-lg">99.3%</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded shadow">
+            <p class="text-gray-600">Подключён с</p>
+            <p class="font-bold text-lg">12.04.2025</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <hr class="my-8">
-
+    <!-- Registration Block -->
+    <div class="bg-white p-8 rounded-lg shadow-lg">
       <h2 id="reg-title" class="text-2xl font-bold mb-6">Регистрация</h2>
       <form id="register-form" class="space-y-4">
-        <input id="reg-username" type="text" placeholder="Имя пользователя" required class="w-full px-4 py-2 border rounded">
-        <input id="reg-email" type="email" placeholder="Email" required class="w-full px-4 py-2 border rounded">
-        <input id="reg-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded">
-        <input id="reg-confirm-password" type="password" placeholder="Повторите пароль" required class="w-full px-4 py-2 border rounded">
+        <input id="reg-username" type="text" placeholder="Имя пользователя" required class="w-full px-4 py-2 border rounded" />
+        <input type="text" id="btcAddress" name="btc_address" placeholder="BTC-адрес" class="w-full px-4 py-2 border rounded" />
+        <input id="reg-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
+        <input id="reg-confirm-password" type="password" placeholder="Повторите пароль" required class="w-full px-4 py-2 border rounded" />
         <button id="reg-btn" type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-3 rounded">Зарегистрироваться</button>
       </form>
     </div>
+
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-900 text-white text-center py-4 mt-10">
     &copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.
   </footer>
 
+  <!-- Язык + ASIC Stats -->
   <script>
     const translations = {
       ru: {
@@ -74,19 +108,16 @@
         "nav-tokens": "Купить токены",
         "nav-staking": "Стейкинг",
         "nav-profile": "Профиль",
+        "nav-dashboard-ui": "Статистика UI",
         "lang-btn": "EN",
         "auth-title": "Авторизация",
-        "auth-email": "Email",
+        "auth-email": "Bitcoin-кошелёк (хэш)",
         "auth-password": "Пароль",
         "auth-remember-label": "Запомнить меня",
         "auth-forgot": "Забыли пароль?",
         "auth-login-btn": "Войти",
-        "auth-alt-text": "Или войдите через",
-        "auth-google": "Google",
-        "auth-github": "GitHub",
         "reg-title": "Регистрация",
         "reg-username": "Имя пользователя",
-        "reg-email": "Email",
         "reg-password": "Пароль",
         "reg-confirm-password": "Повторите пароль",
         "reg-btn": "Зарегистрироваться"
@@ -94,24 +125,21 @@
       en: {
         "page-title": "User Profile",
         "title": "User Profile",
-        "nav-dashboard": "Home",
+        "nav-index": "Main",
         "nav-dashboard": "Dashboard",
         "nav-tokens": "Buy Tokens",
         "nav-staking": "Staking",
         "nav-profile": "Profile",
+        "nav-dashboard-ui": "Dashboard UI",
         "lang-btn": "RU",
         "auth-title": "Login",
-        "auth-email": "Email",
+        "auth-email": "Bitcoin Wallet (hash)",
         "auth-password": "Password",
         "auth-remember-label": "Remember me",
         "auth-forgot": "Forgot password?",
         "auth-login-btn": "Login",
-        "auth-alt-text": "Or login via",
-        "auth-google": "Google",
-        "auth-github": "GitHub",
         "reg-title": "Register",
         "reg-username": "Username",
-        "reg-email": "Email",
         "reg-password": "Password",
         "reg-confirm-password": "Confirm password",
         "reg-btn": "Sign Up"
@@ -120,10 +148,11 @@
 
     function applyTranslation(lang) {
       document.documentElement.lang = lang;
+      document.title = translations[lang]["page-title"];
       for (const key in translations[lang]) {
         const element = document.getElementById(key);
         if (element) {
-          if (element.tagName === "INPUT") {
+          if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
             element.placeholder = translations[lang][key];
           } else {
             element.textContent = translations[lang][key];
@@ -133,17 +162,17 @@
     }
 
     function toggleLanguage() {
-      const newLang = document.documentElement.lang === "ru" ? "en" : "ru";
-      localStorage.setItem("language", newLang);
+      const btn = document.getElementById("lang-btn");
+      const newLang = btn.textContent === "EN" ? "en" : "ru";
       applyTranslation(newLang);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const savedLang = localStorage.getItem("language") || "ru";
-      applyTranslation(savedLang);
+    document.getElementById("asic-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const stats = document.getElementById("asic-stats");
+      stats.classList.remove("hidden");
     });
-</script>
-
+  </script>
 
 </body>
 </html>
