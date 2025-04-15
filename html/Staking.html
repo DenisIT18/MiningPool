@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="page-title">Стейкинг</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <header class="text-center mt-3">
+    <h1 id="title">Майнинг-Пул Bitcoin</h1>
+    <nav class="d-flex flex-wrap justify-content-center mt-2">
+      <a id="nav-index" href="index.html">Главная</a>
+      <a id="nav-dashboard" href="dashboard.html">Статистика</a>
+      <a id="nav-tokens" href="tokens.html">Купить токены</a>
+      <a id="nav-staking" href="staking.html">Стейкинг</a>
+      <a id="nav-profile" href="profile.html">Профиль</a>
+      <a id="nav-scripts" href="scripts.html">Скрипты</a>
+      <button id="lang-btn" onclick="toggleLanguage()">EN</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2 id="staking-title" class="mb-4">Стейкинг токенов</h2>
+    <p id="staking-description">Введите количество токенов и BTC-кошелёк для стейкинга.</p>
+
+    <form id="stakingForm">
+      <div class="mb-3">
+        <label id="label-wallet" for="wallet" class="form-label">Адрес кошелька:</label>
+        <input type="text" class="form-control" id="wallet" name="wallet" required>
+      </div>
+      <div class="mb-3">
+        <label id="label-amount" for="amount" class="form-label">Количество токенов:</label>
+        <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+      </div>
+      <div class="mb-3">
+        <label id="duration-label" for="duration" class="form-label">Срок:</label>
+        <select class="form-select" id="duration" name="duration">
+          <option value="30" id="duration-30">30 дней</option>
+          <option value="60" id="duration-60">60 дней</option>
+          <option value="90" id="duration-90">90 дней</option>
+        </select>
+      </div>
+      <button type="submit" id="submit-button" class="btn btn-primary">Отправить в стейкинг</button>
+    </form>
+  </main>
+
+  <footer class="text-center mt-5">
+    <p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
+  </footer>
+
+  <script src="../static/js/script.js"></script>
+</body>
+</html>

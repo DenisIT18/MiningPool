@@ -1,0 +1,125 @@
+/* ============ Base ============ */
+body {
+    background-color: #0e0e1a;
+    color: #f1f1f1;
+    font-family: "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+  
+  h1, h2, h3 {
+    color: #00ffff;
+    text-shadow: 0 0 5px #0ff;
+  }
+  
+  .container {
+    flex: 1;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    animation: fadein 0.5s ease-in;
+  }
+  
+  /* ============ Navigation ============ */
+  nav a {
+    margin: 0 10px;
+    color: #00ffff;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  nav a:hover {
+    color: white;
+    text-shadow: 0 0 8px #0ff;
+  }
+  
+  nav a.fw-bold.text-warning {
+    text-decoration: underline;
+  }
+  
+  #lang-btn {
+    margin-left: 15px;
+    background-color: #00ffff;
+    color: #000;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  /* ============ Form Elements ============ */
+  input, select, textarea {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    border: 1px solid #00ffff;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 8px #00ffff;
+    border-color: #00ffff;
+  }
+  
+  button, .btn {
+    background-color: #00ffff;
+    border: none;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #00d4d4;
+    color: black;
+  }
+  
+  /* ============ Footer ============ */
+  footer {
+    background-color: #0a0a14;
+    padding: 15px;
+    text-align: center;
+    color: #aaa;
+    box-shadow: 0 0 10px #00ffff10;
+    margin-top: auto;
+  }
+  
+  /* ============ Scripts Page ============ */
+  pre#script-output {
+    background-color: #10101a;
+    border-left: 4px solid #0ff;
+    padding: 15px;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+  }
+  
+  /* ============ Animations ============ */
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ============ Mobile ============ */
+  @media (max-width: 768px) {
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    nav a, #lang-btn {
+      margin: 5px 8px;
+    }
+  
+    .container {
+      padding: 15px;
+      margin: 15px;
+    }
+  }
+  
