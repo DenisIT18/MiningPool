@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Регистрация</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <header class="bg-gray-900 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 id="title" class="text-xl font-bold">Регистрация</h1>
+      <button id="lang-btn" class="bg-white text-black px-3 py-1 rounded">EN</button>
+    </div>
+  </header>
+
+  <main class="container mx-auto py-10 px-4 max-w-md">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <h2 id="reg-title" class="text-2xl font-bold mb-6">Создать аккаунт</h2>
+      <form id="register-form" class="space-y-4">
+        <input id="reg-username" type="text" placeholder="Имя пользователя" required class="w-full px-4 py-2 border rounded" />
+        <input id="reg-email" type="text" placeholder="Bitcoin-кошелёк (хэш)" required class="w-full px-4 py-2 border rounded" />
+        <input id="reg-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
+        <input id="reg-confirm-password" type="password" placeholder="Повторите пароль" required class="w-full px-4 py-2 border rounded" />
+        <button id="reg-btn" type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-3 rounded">Зарегистрироваться</button>
+      </form>
+      <p class="mt-4 text-sm text-gray-600">
+        <span id="already-account-text">Уже есть аккаунт?</span> <a href="Profile.html" id="login-link" class="text-indigo-600 hover:underline">Войти</a>
+      </p>
+    </div>
+  </main>
+
+  <script>
+    const translations = {
+      ru: {
+        "page-title": "Регистрация",
+        "title": "Регистрация",
+        "reg-title": "Создать аккаунт",
+        "reg-username": "Имя пользователя",
+        "reg-email": "Bitcoin-кошелёк (хэш)",
+        "reg-password": "Пароль",
+        "reg-confirm-password": "Повторите пароль",
+        "reg-btn": "Зарегистрироваться",
+        "already-account-text": "Уже есть аккаунт?",
+        "login-link": "Войти",
+        "lang-btn": "EN"
+      },
+      en: {
+        "page-title": "Registration",
+        "title": "Registration",
+        "reg-title": "Create Account",
+        "reg-username": "Username",
+        "reg-email": "Bitcoin Wallet (hash)",
+        "reg-password": "Password",
+        "reg-confirm-password": "Confirm Password",
+        "reg-btn": "Register",
+        "already-account-text": "Already have an account?",
+        "login-link": "Login",
+        "lang-btn": "RU"
+      }
+    };
+
+    function applyTranslation(lang) {
+      document.documentElement.lang = lang;
+      document.title = translations[lang]["page-title"];
+      for (const key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) {
+          if (el.tagName === "INPUT") {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.textContent = translations[lang][key];
+          }
+        }
+      }
+    }
+
+    function toggleLanguage() {
+      const currentLang = document.documentElement.lang || "ru";
+      const newLang = currentLang === "ru" ? "en" : "ru";
+      applyTranslation(newLang);
+    }
+
+    document.getElementById("lang-btn").addEventListener("click", toggleLanguage);
+    applyTranslation(document.documentElement.lang || "ru");
+
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("reg-username").value;
+      const email = document.getElementById("reg-email").value;
+      const password = document.getElementById("reg-password").value;
+      const confirmPassword = document.getElementById("reg-confirm-password").value;
+
+      if (password !== confirmPassword) {
+        alert("Пароли не совпадают.");
+        return;
+      }
+
+      const user = { username, email, password };
+      localStorage.setItem("user", JSON.stringify(user));
+
+      alert("Регистрация завершена!");
+      window.location.href = "Profile.html";
+    });
+  </script>
+</body>
+</html>
+
