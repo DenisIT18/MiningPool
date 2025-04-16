@@ -1,48 +1,143 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title id="page-title">Профиль</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../static/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Вход в аккаунт</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body>
-  <header class="text-center mt-3">
-    <h1 id="title">Профиль пользователя</h1>
-    <nav class="d-flex flex-wrap justify-content-center mt-2">
-      <a id="nav-index" href="index.html">Главная</a>
-      <a id="nav-dashboard" href="dashboard.html">Статистика</a>
-      <a id="nav-tokens" href="tokens.html">Купить токены</a>
-      <a id="nav-staking" href="staking.html">Стейкинг</a>
-      <a id="nav-profile" href="profile.html">Профиль</a>
-      <a id="nav-scripts" href="scripts.html">Скрипты</a>
-      <button id="lang-btn" onclick="toggleLanguage()">EN</button>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-gray-900 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 id="title" class="text-xl font-bold">Вход в аккаунт</h1>
+      <button id="lang-btn" class="bg-white text-black px-3 py-1 rounded">EN</button>
+    </div>
+    <nav class="mt-2">
+      <ul class="flex space-x-4 text-sm">
+        <li><a href="index.html" id="nav-home" class="hover:underline">Главная</a></li>
+        <li><a href="dashboard.html" id="nav-stats" class="hover:underline">Статистика</a></li>
+        <li><a href="Tokens.html" id="nav-buy-tokens" class="hover:underline">Купить токены</a></li>
+        <li><a href="Staking.html" id="nav-staking" class="hover:underline">Стейкинг</a></li>
+        <li><a href="Profile.html" id="nav-profile" class="font-bold underline">Профиль</a></li>
+        <li><a href="Dashboard UI Upgrade.html" id="nav-dashboard" class="hover:underline">Статистика UI</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main class="container">
-    <h2 id="auth-title" class="mb-3">Авторизация</h2>
-    <form id="login-form">
-      <input id="auth-email" type="text" class="form-control mb-3" placeholder="Bitcoin-кошелёк" required>
-      <input id="auth-password" type="password" class="form-control mb-3" placeholder="Пароль" required>
-      <button id="auth-login-btn" type="submit" class="btn btn-success">Войти</button>
-    </form>
+  <!-- Main -->
+  <main class="container mx-auto py-10 px-4 max-w-md">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <h2 id="auth-title" class="text-2xl font-bold mb-6">Авторизация</h2>
+      <form id="login-form" class="space-y-4">
+        <input id="login-email" type="text" placeholder="Bitcoin-кошелёк (хэш)" required class="w-full px-4 py-2 border rounded" />
+        <input id="login-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
+        <button id="auth-login-btn" type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg py-3 rounded">Войти</button>
+      </form>
 
-    <h2 id="reg-title" class="mt-5 mb-3">Регистрация</h2>
-    <form id="register-form">
-      <input id="reg-username" type="text" class="form-control mb-3" placeholder="Имя пользователя" required>
-      <input id="btcAddress" type="text" class="form-control mb-3" placeholder="BTC-адрес" required>
-      <input id="reg-password" type="password" class="form-control mb-3" placeholder="Пароль" required>
-      <input id="reg-confirm-password" type="password" class="form-control mb-3" placeholder="Повторите пароль" required>
-      <button id="reg-btn" type="submit" class="btn btn-primary">Зарегистрироваться</button>
-    </form>
+      <!-- Forgot password -->
+      <p class="mt-2 text-sm text-gray-600 text-center">
+        <a href="reset-password.html" id="forgot-password-link" class="text-indigo-600 hover:underline">Забыли пароль?</a>
+      </p>
+
+      <!-- Register -->
+      <p class="mt-4 text-sm text-gray-600 text-center" id="register-container">
+        <span id="no-account-text">Нет аккаунта?</span>
+        <a href="Register.html" id="register-link" class="text-indigo-600 hover:underline">Зарегистрироваться</a>
+      </p>
+    </div>
   </main>
 
-  <footer class="text-center mt-5">
-    <p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p>
-  </footer>
+  <!-- Script -->
+  <script>
+    const translations = {
+      ru: {
+        "page-title": "Вход в аккаунт",
+        "title": "Вход в аккаунт",
+        "auth-title": "Авторизация",
+        "login-email": "Bitcoin-кошелёк (хэш)",
+        "login-password": "Пароль",
+        "auth-login-btn": "Войти",
+        "no-account-text": "Нет аккаунта?",
+        "register-link": "Зарегистрироваться",
+        "forgot-password-link": "Забыли пароль?",
+        "nav-home": "Главная",
+        "nav-stats": "Статистика",
+        "nav-buy-tokens": "Купить токены",
+        "nav-staking": "Стейкинг",
+        "nav-profile": "Профиль",
+        "nav-dashboard": "Статистика UI"
+      },
+      en: {
+        "page-title": "Login to Account",
+        "title": "Login to Account",
+        "auth-title": "Login",
+        "login-email": "Bitcoin Wallet (hash)",
+        "login-password": "Password",
+        "auth-login-btn": "Login",
+        "no-account-text": "Don't have an account?",
+        "register-link": "Register",
+        "forgot-password-link": "Forgot password?",
+        "nav-home": "Home",
+        "nav-stats": "Stats",
+        "nav-buy-tokens": "Buy Tokens",
+        "nav-staking": "Staking",
+        "nav-profile": "Profile",
+        "nav-dashboard": "Stats UI"
+      }
+    };
 
-  <script src="../static/js/script.js"></script>
+    function applyTranslation(lang) {
+      document.documentElement.lang = lang;
+      document.title = translations[lang]["page-title"];
+      for (const key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) {
+          if (el.tagName === "INPUT") {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.textContent = translations[lang][key];
+          }
+        }
+      }
+      document.getElementById("lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+    }
+
+    function toggleLanguage() {
+      const currentLang = document.documentElement.lang || "ru";
+      const newLang = currentLang === "ru" ? "en" : "ru";
+      applyTranslation(newLang);
+    }
+
+    document.getElementById("lang-btn").addEventListener("click", toggleLanguage);
+
+    applyTranslation(document.documentElement.lang || "ru");
+
+    // Проверка логина
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        alert("Успешный вход!");
+        document.getElementById("register-container").style.display = "none";
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Неверные данные или аккаунт не существует.");
+      }
+    });
+
+    // Скрыть регистрацию если уже вошёл
+    window.onload = function () {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (storedUser) {
+        document.getElementById("register-container").style.display = "none";
+      }
+    };
+  </script>
 </body>
 </html>
+
