@@ -1,143 +1,44 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">Вход в аккаунт</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="page-title">BtcAIWork | Вход</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body class="bg-gray-100 text-gray-900">
-
-  <!-- Header -->
-  <header class="bg-gray-900 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 id="title" class="text-xl font-bold">Вход в аккаунт</h1>
-      <button id="lang-btn" class="bg-white text-black px-3 py-1 rounded">EN</button>
+<body class="bg-dark text-light">
+  <div class="bg-animated"></div>
+  <canvas id="hashWave" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
+  <header class="text-center mt-3">
+    <h1 class="text-info" id="title">BtcAIWork</h1>
+    <div class="d-flex flex-wrap justify-content-center mt-2">
+      <a href="index.html"><button class="btn btn-nav" id="nav-index">Главная</button></a>
+      <a href="dashboard.html"><button class="btn btn-nav" id="nav-dashboard">Статистика</button></a>
+      <a href="Tokens.html"><button class="btn btn-nav" id="nav-tokens">Купить токены</button></a>
+      <a href="Staking.html"><button class="btn btn-nav" id="nav-staking">Стейкинг</button></a>
+      <a href="Profile.html"><button class="btn btn-nav" id="nav-profile">Профиль</button></a>
+      <a href="scripts.html"><button class="btn btn-nav" id="nav-scripts">Скрипты</button></a>
+      <a href="Connection.html"><button class="btn btn-nav" id="nav-connection">Связь</button></a>
+      <a href="Roadmap.html"><button class="btn btn-nav" id="nav-roadmap">Дорожная карта</button></a>
+      <button id="lang-btn" onclick="toggleLanguage()" class="btn btn-sm btn-info ms-2">EN</button>
     </div>
-    <nav class="mt-2">
-      <ul class="flex space-x-4 text-sm">
-        <li><a href="index.html" id="nav-home" class="hover:underline">Главная</a></li>
-        <li><a href="dashboard.html" id="nav-stats" class="hover:underline">Статистика</a></li>
-        <li><a href="Tokens.html" id="nav-buy-tokens" class="hover:underline">Купить токены</a></li>
-        <li><a href="Staking.html" id="nav-staking" class="hover:underline">Стейкинг</a></li>
-        <li><a href="Profile.html" id="nav-profile" class="font-bold underline">Профиль</a></li>
-        <li><a href="Dashboard UI Upgrade.html" id="nav-dashboard" class="hover:underline">Статистика UI</a></li>
-      </ul>
-    </nav>
   </header>
-
-  <!-- Main -->
-  <main class="container mx-auto py-10 px-4 max-w-md">
-    <div class="bg-white p-8 rounded-lg shadow-lg">
-      <h2 id="auth-title" class="text-2xl font-bold mb-6">Авторизация</h2>
-      <form id="login-form" class="space-y-4">
-        <input id="login-email" type="text" placeholder="Bitcoin-кошелёк (хэш)" required class="w-full px-4 py-2 border rounded" />
-        <input id="login-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
-        <button id="auth-login-btn" type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg py-3 rounded">Войти</button>
-      </form>
-
-      <!-- Forgot password -->
-      <p class="mt-2 text-sm text-gray-600 text-center">
-        <a href="reset-password.html" id="forgot-password-link" class="text-indigo-600 hover:underline">Забыли пароль?</a>
-      </p>
-
-      <!-- Register -->
-      <p class="mt-4 text-sm text-gray-600 text-center" id="register-container">
-        <span id="no-account-text">Нет аккаунта?</span>
-        <a href="Register.html" id="register-link" class="text-indigo-600 hover:underline">Зарегистрироваться</a>
-      </p>
-    </div>
+  <main class="container mt-5 bg-black p-4 rounded" style="max-width: 400px;">
+    <h2 id="auth-title" class="mb-4 text-center text-info">Авторизация</h2>
+    <form id="login-form">
+      <div class="mb-3">
+        <input type="text" id="login-email" class="form-control" placeholder="Bitcoin-кошелёк (хэш)" required />
+      </div>
+      <div class="mb-3">
+        <input type="password" id="login-password" class="form-control" placeholder="Пароль" required />
+      </div>
+      <button type="submit" id="auth-login-btn" class="btn btn-info w-100">Войти</button>
+    </form>
+    <p class="mt-3 text-center"><a href="reset-password.html" id="forgot-password-link" class="text-info">Забыли пароль?</a></p>
+    <p class="mt-2 text-center" id="register-container"><span id="no-account-text">Нет аккаунта?</span> <a href="Register.html" id="register-link" class="text-info">Зарегистрироваться</a></p>
   </main>
-
-  <!-- Script -->
-  <script>
-    const translations = {
-      ru: {
-        "page-title": "Вход в аккаунт",
-        "title": "Вход в аккаунт",
-        "auth-title": "Авторизация",
-        "login-email": "Bitcoin-кошелёк (хэш)",
-        "login-password": "Пароль",
-        "auth-login-btn": "Войти",
-        "no-account-text": "Нет аккаунта?",
-        "register-link": "Зарегистрироваться",
-        "forgot-password-link": "Забыли пароль?",
-        "nav-home": "Главная",
-        "nav-stats": "Статистика",
-        "nav-buy-tokens": "Купить токены",
-        "nav-staking": "Стейкинг",
-        "nav-profile": "Профиль",
-        "nav-dashboard": "Статистика UI"
-      },
-      en: {
-        "page-title": "Login to Account",
-        "title": "Login to Account",
-        "auth-title": "Login",
-        "login-email": "Bitcoin Wallet (hash)",
-        "login-password": "Password",
-        "auth-login-btn": "Login",
-        "no-account-text": "Don't have an account?",
-        "register-link": "Register",
-        "forgot-password-link": "Forgot password?",
-        "nav-home": "Home",
-        "nav-stats": "Stats",
-        "nav-buy-tokens": "Buy Tokens",
-        "nav-staking": "Staking",
-        "nav-profile": "Profile",
-        "nav-dashboard": "Stats UI"
-      }
-    };
-
-    function applyTranslation(lang) {
-      document.documentElement.lang = lang;
-      document.title = translations[lang]["page-title"];
-      for (const key in translations[lang]) {
-        const el = document.getElementById(key);
-        if (el) {
-          if (el.tagName === "INPUT") {
-            el.placeholder = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
-        }
-      }
-      document.getElementById("lang-btn").textContent = lang === "ru" ? "EN" : "RU";
-    }
-
-    function toggleLanguage() {
-      const currentLang = document.documentElement.lang || "ru";
-      const newLang = currentLang === "ru" ? "en" : "ru";
-      applyTranslation(newLang);
-    }
-
-    document.getElementById("lang-btn").addEventListener("click", toggleLanguage);
-
-    applyTranslation(document.documentElement.lang || "ru");
-
-    // Проверка логина
-    document.getElementById("login-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-
-      if (storedUser && storedUser.email === email && storedUser.password === password) {
-        alert("Успешный вход!");
-        document.getElementById("register-container").style.display = "none";
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Неверные данные или аккаунт не существует.");
-      }
-    });
-
-    // Скрыть регистрацию если уже вошёл
-    window.onload = function () {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      if (storedUser) {
-        document.getElementById("register-container").style.display = "none";
-      }
-    };
-  </script>
+  <footer class="text-center mt-5 text-muted"><p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p></footer>
+  <script src="../static/js/script.js"></script>
 </body>
 </html>
-

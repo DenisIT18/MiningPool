@@ -1,109 +1,41 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">Регистрация</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="page-title">BtcAIWork | Регистрация</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body class="bg-gray-100 text-gray-900">
-
-  <header class="bg-gray-900 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 id="title" class="text-xl font-bold">Регистрация</h1>
-      <button id="lang-btn" class="bg-white text-black px-3 py-1 rounded">EN</button>
+<body class="bg-dark text-light">
+  <div class="bg-animated"></div>
+  <canvas id="hashWave" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
+  <header class="text-center mt-3">
+    <h1 class="text-info" id="title">BtcAIWork</h1>
+    <div class="d-flex flex-wrap justify-content-center mt-2">
+      <a href="index.html"><button class="btn btn-nav" id="nav-index">Главная</button></a>
+      <a href="dashboard.html"><button class="btn btn-nav" id="nav-dashboard">Статистика</button></a>
+      <a href="Tokens.html"><button class="btn btn-nav" id="nav-tokens">Купить токены</button></a>
+      <a href="Staking.html"><button class="btn btn-nav" id="nav-staking">Стейкинг</button></a>
+      <a href="Profile.html"><button class="btn btn-nav" id="nav-profile">Профиль</button></a>
+      <a href="scripts.html"><button class="btn btn-nav" id="nav-scripts">Скрипты</button></a>
+      <a href="Connection.html"><button class="btn btn-nav" id="nav-connection">Связь</button></a>
+      <a href="Roadmap.html"><button class="btn btn-nav" id="nav-roadmap">Дорожная карта</button></a>
+      <button id="lang-btn" onclick="toggleLanguage()" class="btn btn-sm btn-info ms-2">EN</button>
     </div>
   </header>
-
-  <main class="container mx-auto py-10 px-4 max-w-md">
-    <div class="bg-white p-8 rounded-lg shadow-lg">
-      <h2 id="reg-title" class="text-2xl font-bold mb-6">Создать аккаунт</h2>
-      <form id="register-form" class="space-y-4">
-        <input id="reg-username" type="text" placeholder="Имя пользователя" required class="w-full px-4 py-2 border rounded" />
-        <input id="reg-email" type="text" placeholder="Bitcoin-кошелёк (хэш)" required class="w-full px-4 py-2 border rounded" />
-        <input id="reg-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded" />
-        <input id="reg-confirm-password" type="password" placeholder="Повторите пароль" required class="w-full px-4 py-2 border rounded" />
-        <button id="reg-btn" type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-3 rounded">Зарегистрироваться</button>
-      </form>
-      <p class="mt-4 text-sm text-gray-600">
-        <span id="already-account-text">Уже есть аккаунт?</span> <a href="Profile.html" id="login-link" class="text-indigo-600 hover:underline">Войти</a>
-      </p>
-    </div>
+  <main class="container mt-5 bg-black p-4 rounded" style="max-width: 500px;">
+    <h2 id="reg-title" class="mb-4 text-center text-info">Создать аккаунт</h2>
+    <form id="register-form">
+      <div class="mb-3"><input type="text" id="reg-username" class="form-control" placeholder="Имя пользователя" required></div>
+      <div class="mb-3"><input type="text" id="reg-email" class="form-control" placeholder="Bitcoin-кошелёк (хэш)" required></div>
+      <div class="mb-3"><input type="password" id="reg-password" class="form-control" placeholder="Пароль" required></div>
+      <div class="mb-3"><input type="password" id="reg-confirm-password" class="form-control" placeholder="Повторите пароль" required></div>
+      <button type="submit" id="reg-btn" class="btn btn-info w-100">Зарегистрироваться</button>
+    </form>
+    <p class="mt-3 text-center"><span id="already-account-text">Уже есть аккаунт?</span> <a href="Profile.html" id="login-link" class="text-info">Войти</a></p>
   </main>
-
-  <script>
-    const translations = {
-      ru: {
-        "page-title": "Регистрация",
-        "title": "Регистрация",
-        "reg-title": "Создать аккаунт",
-        "reg-username": "Имя пользователя",
-        "reg-email": "Bitcoin-кошелёк (хэш)",
-        "reg-password": "Пароль",
-        "reg-confirm-password": "Повторите пароль",
-        "reg-btn": "Зарегистрироваться",
-        "already-account-text": "Уже есть аккаунт?",
-        "login-link": "Войти",
-        "lang-btn": "EN"
-      },
-      en: {
-        "page-title": "Registration",
-        "title": "Registration",
-        "reg-title": "Create Account",
-        "reg-username": "Username",
-        "reg-email": "Bitcoin Wallet (hash)",
-        "reg-password": "Password",
-        "reg-confirm-password": "Confirm Password",
-        "reg-btn": "Register",
-        "already-account-text": "Already have an account?",
-        "login-link": "Login",
-        "lang-btn": "RU"
-      }
-    };
-
-    function applyTranslation(lang) {
-      document.documentElement.lang = lang;
-      document.title = translations[lang]["page-title"];
-      for (const key in translations[lang]) {
-        const el = document.getElementById(key);
-        if (el) {
-          if (el.tagName === "INPUT") {
-            el.placeholder = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
-        }
-      }
-    }
-
-    function toggleLanguage() {
-      const currentLang = document.documentElement.lang || "ru";
-      const newLang = currentLang === "ru" ? "en" : "ru";
-      applyTranslation(newLang);
-    }
-
-    document.getElementById("lang-btn").addEventListener("click", toggleLanguage);
-    applyTranslation(document.documentElement.lang || "ru");
-
-    document.getElementById("register-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const username = document.getElementById("reg-username").value;
-      const email = document.getElementById("reg-email").value;
-      const password = document.getElementById("reg-password").value;
-      const confirmPassword = document.getElementById("reg-confirm-password").value;
-
-      if (password !== confirmPassword) {
-        alert("Пароли не совпадают.");
-        return;
-      }
-
-      const user = { username, email, password };
-      localStorage.setItem("user", JSON.stringify(user));
-
-      alert("Регистрация завершена!");
-      window.location.href = "Profile.html";
-    });
-  </script>
+  <footer class="text-center mt-5 text-muted"><p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p></footer>
+  <script src="../static/js/script.js"></script>
 </body>
 </html>
-
