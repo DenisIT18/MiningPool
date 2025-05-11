@@ -1,20 +1,6 @@
-function toggleLanguage() {
-  const current = localStorage.getItem("language") || "ru";
-  const next = current === "ru" ? "en" : current === "en" ? "de" : current === "de" ? "zh" : "ru";
+// static/js/script.js
 
-  localStorage.setItem("language", next);
-  applyLanguage();
-}
-
-function applyLanguage() {
-  const lang = localStorage.getItem("language") || "ru";
-  document.documentElement.lang = lang;
-  const btn = document.getElementById("lang-btn");
-  if (btn) {
-    const btnLabel = { ru: "RU", en: "EN", de: "DE", zh: "中文" };
-    btn.textContent = btnLabel[lang] || "EN";
-  }
-
+// ====== TRANSLATIONS ======
 const translations = {
   ru: {
     "nav-index": "Главная", "nav-dashboard": "Статистика", "nav-tokens": "Купить токены", "nav-staking": "Стейкинг",
@@ -26,23 +12,21 @@ const translations = {
     "staking-title": "Стейкинг токенов", "staking-description": "Введите количество токенов и BTC-кошелёк для стейкинга.",
     "submit-button": "Отправить в стейкинг", "duration-30": "30 дней", "duration-60": "60 дней", "duration-90": "90 дней",
     "scripts-title": "Запуск Python-скриптов", "scripts-description": "Выберите скрипт из списка для запуска:", "script-output": "Результат выполнения будет здесь...",
-    "contact-title": "Связь с нами", "contact-description": "По вопросам обращайтесь на почту:",
-    "roadmap-title": "Дорожная карта", "roadmap-description": "Этапы развития нашего пула", "contact-description_1": "Ответим в течение 24 часов.",
-    "th-stage": "Этап",
-    "th-timeline": "Сроки",
-    "th-tasks": "Задачи",
-    "td-stage1": "Stage 1: Подготовка",
-    "td-stage2": "Stage 2: Бета",
-    "td-stage3": "Stage 3: Запуск",
-    "td-stage4": "Stage 4: Масштаб",
-    "td-task1": "Проектирование, условия, тестирование",
-    "td-task2": "Тестовые пользователи, отладка",
-    "td-task3": "Регистрация, статистика, выплаты",
-    "td-task4": "Улучшения и регионы",
-    "td-month1": "Май 2025",
-    "td-month2": "Июнь 2025",
-    "td-month3": "Июль 2025",
-    "td-month4": "Сентябрь 2025"
+    "contact-title": "Связь с нами", "contact-description": "По вопросам обращайтесь на почту:", "contact-description_1": "Ответим в течение 24 часов.",
+    "roadmap-title": "Дорожная карта", "roadmap-description": "Этапы развития нашего пула",
+    "th-stage": "Этап", "th-timeline": "Сроки", "th-tasks": "Задачи",
+    "td-stage1": "Stage 1: Подготовка", "td-task1": "Проектирование, условия, тестирование",
+    "td-stage2": "Stage 2: Бета",      "td-task2": "Тестовые пользователи, отладка",
+    "td-stage3": "Stage 3: Запуск",     "td-task3": "Регистрация, статистика, выплаты",
+    "td-stage4": "Stage 4: Масштаб",    "td-task4": "Улучшения и регионы",
+    "td-month1": "Май 2025", "td-month2": "Июнь 2025", "td-month3": "Июль 2025", "td-month4": "Сентябрь 2025",
+      "auth-title": "Вход",
+  "placeholder-login-email": "Bitcoin-кошелёк (хэш)",
+  "placeholder-login-password": "Пароль",
+  "btn-login": "Войти",
+  "link-forgot": "Забыли пароль?",
+  "link-register": "Зарегистрироваться",
+  "label-duration": "Срок:"
   },
   en: {
     "nav-index": "Home", "nav-dashboard": "Statistics", "nav-tokens": "Buy Tokens", "nav-staking": "Staking",
@@ -54,24 +38,21 @@ const translations = {
     "staking-title": "Token Staking", "staking-description": "Enter token amount and wallet to stake.",
     "submit-button": "Stake Tokens", "duration-30": "30 days", "duration-60": "60 days", "duration-90": "90 days",
     "scripts-title": "Run Python Scripts", "scripts-description": "Select a script to execute:", "script-output": "Execution result will appear here...",
-    "contact-title": "Contact Us", "contact-description": "For questions, email us at:",
+    "contact-title": "Contact Us", "contact-description": "For questions, email us at:", "contact-description_1": "We will respond within 24 hours.",
     "roadmap-title": "Project Roadmap", "roadmap-description": "Development milestones of our mining pool",
-    "th-stage": "Stage",
-    "th-timeline": "Timeline",
-    "th-tasks": "Tasks",
-    "td-stage1": "Stage 1: Planning",
-    "td-stage2": "Stage 2: Beta",
-    "td-stage3": "Stage 3: Launch",
-    "td-stage4": "Stage 4: Scaling",
-    "td-task1": "Design, Requirements, Testing",
-    "td-task2": "Test Users, Debugging",
-    "td-task3": "Registration, Stats, Payouts",
-    "td-task4": "Improvements & Regions",
-    "td-month1": "May 2025",
-    "td-month2": "June 2025",
-    "td-month3": "July 2025",
-    "td-month4": "September 2025",
-    "contact-description_1": "We will respond within 24 hours."
+    "th-stage": "Stage", "th-timeline": "Timeline", "th-tasks": "Tasks",
+    "td-stage1": "Stage 1: Planning","td-task1": "Design, Requirements, Testing",
+    "td-stage2": "Stage 2: Beta",    "td-task2": "Test Users, Debugging",
+    "td-stage3": "Stage 3: Launch",  "td-task3": "Registration, Stats, Payouts",
+    "td-stage4": "Stage 4: Scaling", "td-task4": "Improvements & Regions",
+    "td-month1": "May 2025", "td-month2": "June 2025", "td-month3": "July 2025", "td-month4": "September 2025",
+      "auth-title": "Login",
+  "placeholder-login-email": "BTC wallet (hash)",
+  "placeholder-login-password": "Password",
+  "btn-login": "Login",
+  "link-forgot": "Forgot password?",
+  "link-register": "Register",
+  "label-duration": "Duration:"
   },
   de: {
     "nav-index": "Startseite", "nav-dashboard": "Statistik", "nav-tokens": "Token kaufen", "nav-staking": "Staking",
@@ -83,24 +64,21 @@ const translations = {
     "staking-title": "Token-Staking", "staking-description": "Geben Sie die Anzahl und Ihre Wallet für das Staking ein.",
     "submit-button": "Staken", "duration-30": "30 Tage", "duration-60": "60 Tage", "duration-90": "90 Tage",
     "scripts-title": "Python-Skripte ausführen", "scripts-description": "Wählen Sie ein Skript zum Ausführen aus:", "script-output": "Ergebnis der Ausführung erscheint hier...",
-    "contact-title": "Kontaktieren Sie uns", "contact-description": "Bei Fragen schreiben Sie uns:",
+    "contact-title": "Kontaktieren Sie uns", "contact-description": "Bei Fragen schreiben Sie uns:", "contact-description_1": "Wir werden innerhalb von 24 Stunden antworten.",
     "roadmap-title": "Fahrplan", "roadmap-description": "Entwicklungsetappen unseres Pools",
-    "th-stage": "Phase",
-    "th-timeline": "Zeitplan",
-    "th-tasks": "Aufgaben",
-    "td-stage1": "Phase 1: Planung",
-    "td-stage2": "Phase 2: Beta",
-    "td-stage3": "Phase 3: Start",
-    "td-stage4": "Phase 4: Skalierung",
-    "td-task1": "Entwurf, Anforderungen, Tests",
-    "td-task2": "Testnutzer, Fehlerbehebung",
-    "td-task3": "Registrierung, Statistik, Auszahlungen",
-    "td-task4": "Verbesserungen & Regionen",
-    "td-month1": "Mai 2025",
-    "td-month2": "Juni 2025",
-    "td-month3": "Juli 2025",
-    "td-month4": "September 2025",
-    "contact-description_1": "Wir werden innerhalb von 24 Stunden antworten.",
+    "th-stage": "Phase", "th-timeline": "Zeitplan", "th-tasks": "Aufgaben",
+    "td-stage1": "Phase 1: Planung", "td-task1": "Entwurf, Anforderungen, Tests",
+    "td-stage2": "Phase 2: Beta",    "td-task2": "Testnutzer, Fehlerbehebung",
+    "td-stage3": "Phase 3: Start",   "td-task3": "Registrierung, Statistik, Auszahlungen",
+    "td-stage4": "Phase 4: Skalierung","td-task4": "Verbesserungen & Regionen",
+    "td-month1": "Mai 2025", "td-month2": "Juni 2025", "td-month3": "Juli 2025", "td-month4": "September 2025",
+      "auth-title": "Anmelden",
+  "placeholder-login-email": "BTC Wallet (Hash)",
+  "placeholder-login-password": "Passwort",
+  "btn-login": "Einloggen",
+  "link-forgot": "Passwort vergessen?",
+  "link-register": "Registrieren",
+  "label-duration": "Dauer:"
   },
   zh: {
     "nav-index": "主页", "nav-dashboard": "统计", "nav-tokens": "购买代币", "nav-staking": "质押",
@@ -112,216 +90,212 @@ const translations = {
     "staking-title": "代币质押", "staking-description": "输入数量和钱包地址开始质押。",
     "submit-button": "开始质押", "duration-30": "30 天", "duration-60": "60 天", "duration-90": "90 天",
     "scripts-title": "运行 Python 脚本", "scripts-description": "选择要执行的脚本：", "script-output": "执行结果将在此显示...",
-    "contact-title": "联系我们", "contact-description": "有问题请发邮件至：",
+    "contact-title": "联系我们", "contact-description": "有问题请发邮件至：", "contact-description_1": "我们将在 24 小时内回复。",
     "roadmap-title": "路线图", "roadmap-description": "我们挖矿池的开发阶段",
-    "th-stage": "阶段",
-    "th-timeline": "时间表",
-    "th-tasks": "任务",
-    "td-stage1": "阶段 1：规划",
-    "td-stage2": "阶段 2：测试版",
-    "td-stage3": "阶段 3：上线",
-    "td-stage4": "阶段 4：扩展",
-    "td-task1": "设计，需求，测试",
-    "td-task2": "测试用户，调试",
-    "td-task3": "注册，统计，付款",
-    "td-task4": "改进与区域拓展",
-    "td-month1": "2025年5月",
-    "td-month2": "2025年6月",
-    "td-month3": "2025年7月",
-    "td-month4": "2025年9月",
-    "contact-description_1": "我们将在 24 小时内回复。",
+    "th-stage": "阶段", "th-timeline": "时间表", "th-tasks": "任务",
+    "td-stage1": "阶段 1：规划", "td-task1": "设计，需求，测试",
+    "td-stage2": "阶段 2：测试版","td-task2": "测试用户，调试",
+    "td-stage3": "阶段 3：上线","td-task3": "注册，统计，付款",
+    "td-stage4": "阶段 4：扩展","td-task4": "改进与区域拓展",
+    "td-month1": "2025年5月", "td-month2": "2025年6月", "td-month3": "2025年7月", "td-month4": "2025年9月",
+      "auth-title": "登录",
+  "placeholder-login-email": "BTC 钱包（哈希）",
+  "placeholder-login-password": "密码",
+  "btn-login": "登录",
+  "link-forgot": "忘记密码？",
+  "link-register": "注册",
+  "label-duration": "时长："
   }
 };
 
-  const current = translations[lang];
-  for (const key in current) {
-    const el = document.getElementById(key);
-    if (!el) continue;
-    if (["INPUT", "TEXTAREA"].includes(el.tagName)) {
-      if (el.placeholder) el.placeholder = current[key];
-    } else {
-      el.textContent = current[key];
-    }
-    if (key === "page-title") document.title = current[key];
-  }
-
-  highlightActiveMenu();
+// ====== LANGUAGE SWITCHER ======
+function toggleLanguage() {
+  const current = localStorage.getItem("language") || "ru";
+  const next = current === "ru" ? "en"
+             : current === "en" ? "de"
+             : current === "de" ? "zh"
+             : "ru";
+  localStorage.setItem("language", next);
+  applyLanguage();
 }
 
+function applyLanguage() {
+  const lang = localStorage.getItem("language") || "ru";
+  document.documentElement.lang = lang;
+
+  // Update language button label
+  const btn = document.getElementById("lang-btn");
+  if (btn) {
+    const labels = { ru: "RU", en: "EN", de: "DE", zh: "中文" };
+    btn.textContent = labels[lang];
+  }
+
+  // Translate elements with data-i18n
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const txt = translations[lang]?.[key];
+    if (txt != null) el.textContent = txt;
+  });
+
+  // Translate placeholders
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const ph = translations[lang]?.[key];
+    if (ph != null) el.placeholder = ph;
+  });
+
+  // Translate <title> if data-i18n-title on <html>
+  const titleKey = document.documentElement.getAttribute("data-i18n-title");
+  if (titleKey) {
+    const t = translations[lang]?.[titleKey];
+    if (t) document.title = t;
+  }
+}
+
+// ====== THEME SWITCHER ======
+function toggleTheme() {
+  const current = localStorage.getItem("theme") || "dark";
+  const next = current === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", next);
+  applyTheme();
+}
+
+function applyTheme() {
+  const theme = localStorage.getItem("theme") || "dark";
+  document.body.classList.remove("dark-theme", "light-theme");
+  document.body.classList.add(theme + "-theme");
+}
+
+// ====== NAVIGATION HIGHLIGHT ======
 function highlightActiveMenu() {
   const path = location.pathname.split("/").pop();
-  const links = document.querySelectorAll("nav a, .btn-nav");
-  links.forEach(link => {
-    const href = link.getAttribute("href");
-    if (href && path && href.includes(path)) {
-      link.classList.add("fw-bold", "text-warning");
+  document.querySelectorAll("nav a.btn-nav, nav a").forEach(el => {
+    const href = el.getAttribute("href");
+    if (href === path) {
+      el.classList.add("fw-bold", "text-warning");
     } else {
-      link.classList.remove("fw-bold", "text-warning");
+      el.classList.remove("fw-bold", "text-warning");
     }
   });
 }
 
-// 🧱 Анимация блоков с ограничением 15 шт
+// ====== HASH WAVE ANIMATION ======
 function startHashWave() {
   const canvas = document.getElementById("hashWave");
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
+  let blocks = [];
 
   function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
   resize();
   window.addEventListener("resize", resize);
 
-  const blockHeightBase = 900000;
-  const blocks = [];
-
-  function colorFromProgress(x, variance = 0) {
-    const r = Math.min(255, Math.max(0, Math.floor(255 * (1 - x) + variance)));
-    const g = Math.min(255, Math.max(0, Math.floor(255 * x + variance)));
+  function colorFromProgress(p, variance = 0) {
+    const r = Math.min(255, Math.max(0, Math.floor(255 * (1 - p) + variance)));
+    const g = Math.min(255, Math.max(0, Math.floor(255 * p + variance)));
     return `rgb(${r},${g},50)`;
   }
 
   function generateBlock() {
+    if (blocks.length >= 15) return;
     const size = 50 + Math.random() * 30;
-    const height = blockHeightBase - Math.floor(Math.random() * 100);
-    const speed = 0.5 + Math.random();
-    const y = 50 + Math.random() * (canvas.height - size - 100);
-    const waveOffset = Math.random() * 100;
+    const height = 900000 - Math.floor(Math.random() * 100);
+    const speedX = 0.5 + Math.random();
+    const yBase = 50 + Math.random() * (canvas.height - size - 100);
+    const block = { x: -size, y: yBase, yBase, size, speedX, speedY:0, waveOffset:Math.random()*100, height, inner:[] };
 
-    const newBlock = {
-      x: -size,
-      y,
-      baseY: y,
-      size,
-      speedX: speed,
-      speedY: 0,
-      waveOffset,
-      height,
-      inner: []
-    };
-
-    // Проверка на пересечение по позиции
-    const overlaps = blocks.some(b => {
-      return (
-        Math.abs(b.x - newBlock.x) < newBlock.size &&
-        Math.abs(b.y - newBlock.y) < newBlock.size
-      );
-    });
-
-    if (overlaps) return;
-    const innerCorners = [
-      { x: 0.05, y: 0.05 }, // левый верх
-      { x: 0.65, y: 0.05 }, // правый верх
-      { x: 0.05, y: 0.65 }, // левый низ
-      { x: 0.65, y: 0.65 }  // правый низ
-    ];
-    // внутренние блоки
-    const innerCount = 4 + Math.floor(Math.random() * 6);
-    for (let i = 0; i < 4; i++) {
-      const s = newBlock.size * (0.25 + Math.random() * 0.1); // 25-35% от размера
-      const ox = newBlock.size * innerCorners[i].x;
-      const oy = newBlock.size * innerCorners[i].y;
-      const dx = (Math.random() - 0.5) * 0.5;
-      const dy = (Math.random() - 0.5) * 0.5;
-      const colorVar = Math.floor(Math.random() * 160 - 80);
-      newBlock.inner.push({ x: ox, y: oy, size: s, dx, dy, colorVar });
+    // Create 4 inner blocks
+    const corners = [{x:0.05,y:0.05},{x:0.65,y:0.05},{x:0.05,y:0.65},{x:0.65,y:0.65}];
+    for (let i=0; i<4; i++) {
+      const s = size*(0.25+Math.random()*0.1);
+      const ox = size*corners[i].x, oy = size*corners[i].y;
+      block.inner.push({
+        x: ox, y: oy, size: s,
+        dx: (Math.random()-0.5)*0.5,
+        dy: (Math.random()-0.5)*0.5,
+        variance: Math.floor(Math.random()*160 - 80)
+      });
     }
 
-
-    blocks.push(newBlock);
+    // Avoid overlap
+    if (!blocks.some(b => Math.abs(b.x - block.x) < size && Math.abs(b.y - block.y) < size)) {
+      blocks.push(block);
+    }
   }
 
   function handleCollisions() {
-    for (let i = 0; i < blocks.length; i++) {
-      for (let j = i + 1; j < blocks.length; j++) {
-        const a = blocks[i];
-        const b = blocks[j];
-        if (
-          Math.abs(a.x - b.x) < Math.max(a.size, b.size) &&
-          Math.abs(a.y - b.y) < Math.max(a.size, b.size)
-        ) {
-          // простая реакция отскока по X
-          const temp = a.speedX;
-          a.speedX = b.speedX;
-          b.speedX = temp;
-
-          // лёгкий разброс по Y
-          a.speedY = (Math.random() - 0.5) * 0.5;
-          b.speedY = (Math.random() - 0.5) * 0.5;
+    for (let i=0; i<blocks.length; i++){
+      for (let j=i+1; j<blocks.length; j++){
+        const a = blocks[i], b = blocks[j];
+        if (Math.abs(a.x - b.x) < Math.max(a.size, b.size) &&
+            Math.abs(a.y - b.y) < Math.max(a.size, b.size)) {
+          [a.speedX, b.speedX] = [b.speedX, a.speedX];
+          a.speedY = (Math.random()-0.5)*0.5;
+          b.speedY = (Math.random()-0.5)*0.5;
         }
       }
     }
   }
 
-  function drawFrame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     blocks.forEach(block => {
       block.y += block.speedY;
-      const progress = block.x / canvas.width;
-      const color = colorFromProgress(progress);
-      const waveY = Math.sin((block.x + block.waveOffset) / 60) * 10;
-      const y = block.y + waveY;
+      const p = block.x / canvas.width;
+      const col = colorFromProgress(p);
+      const wave = Math.sin((block.x + block.waveOffset) / 60) * 10;
+      const y = block.y + wave;
 
-      // основной блок
-          // передняя грань (основной цвет)
-    ctx.fillStyle = color;
-    ctx.fillRect(block.x, y, block.size, block.size);
+      // Front face
+      ctx.fillStyle = col;
+      ctx.fillRect(block.x, y, block.size, block.size);
 
-    // верхняя грань
-    ctx.fillStyle = "rgba(255,255,255,0.1)";
-    ctx.beginPath();
-    ctx.moveTo(block.x, y);
-    ctx.lineTo(block.x + block.size * 0.15, y - block.size * 0.15);
-    ctx.lineTo(block.x + block.size * 1.15, y - block.size * 0.15);
-    ctx.lineTo(block.x + block.size, y);
-    ctx.closePath();
-    ctx.fill();
+      // Top face
+      ctx.fillStyle = "rgba(255,255,255,0.1)";
+      ctx.beginPath();
+      ctx.moveTo(block.x, y);
+      ctx.lineTo(block.x + block.size*0.15, y - block.size*0.15);
+      ctx.lineTo(block.x + block.size*1.15, y - block.size*0.15);
+      ctx.lineTo(block.x + block.size, y);
+      ctx.closePath();
+      ctx.fill();
 
-    // боковая грань
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.beginPath();
-    ctx.moveTo(block.x + block.size, y);
-    ctx.lineTo(block.x + block.size * 1.15, y - block.size * 0.15);
-    ctx.lineTo(block.x + block.size * 1.15, y + block.size * 0.85);
-    ctx.lineTo(block.x + block.size, y + block.size);
-    ctx.closePath();
-    ctx.fill();
+      // Side face
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.beginPath();
+      ctx.moveTo(block.x + block.size, y);
+      ctx.lineTo(block.x + block.size*1.15, y - block.size*0.15);
+      ctx.lineTo(block.x + block.size*1.15, y + block.size*0.85);
+      ctx.lineTo(block.x + block.size, y + block.size);
+      ctx.closePath();
+      ctx.fill();
 
+      // Height text
       ctx.fillStyle = "#fff";
       ctx.font = "12px monospace";
       ctx.fillText("height: " + block.height, block.x, y - 5);
 
-      // внутренние блоки
+      // Inner blocks
       block.inner.forEach(ib => {
-        ib.x += ib.dx;
-        ib.y += ib.dy;
-                // столкновение между внутренними
-        for (let j = 0; j < block.inner.length; j++) {
-          const b2 = block.inner[j];
-          if (ib === b2) continue;
-          const dx = (ib.x + ib.size / 2) - (b2.x + b2.size / 2);
-          const dy = (ib.y + ib.size / 2) - (b2.y + b2.size / 2);
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < (ib.size + b2.size) / 2) {
-            // простой отскок — обмен скоростями
-            const tempDx = ib.dx;
-            ib.dx = b2.dx;
-            b2.dx = tempDx;
-            const tempDy = ib.dy;
-            ib.dy = b2.dy;
-            b2.dy = tempDy;
+        ib.x += ib.dx; ib.y += ib.dy;
+        // Inner collision
+        block.inner.forEach(b2 => {
+          if (b2 === ib) return;
+          const dx = (ib.x + ib.size/2) - (b2.x + b2.size/2);
+          const dy = (ib.y + ib.size/2) - (b2.y + b2.size/2);
+          const dist = Math.hypot(dx, dy);
+          if (dist < (ib.size + b2.size)/2) {
+            [ib.dx, b2.dx] = [b2.dx, ib.dx];
+            [ib.dy, b2.dy] = [b2.dy, ib.dy];
           }
-        }
-
+        });
         if (ib.x < 0 || ib.x + ib.size > block.size) ib.dx *= -1;
         if (ib.y < 0 || ib.y + ib.size > block.size) ib.dy *= -1;
-
-        const ix = block.x + ib.x;
-        const iy = y + ib.y;
-        ctx.fillStyle = colorFromProgress(progress, ib.colorVar);
+        const ix = block.x + ib.x, iy = y + ib.y;
+        ctx.fillStyle = colorFromProgress(p, ib.variance);
         ctx.fillRect(ix, iy, ib.size, ib.size);
         ctx.strokeStyle = "#000";
         ctx.strokeRect(ix, iy, ib.size, ib.size);
@@ -330,70 +304,27 @@ function startHashWave() {
       block.x += block.speedX;
     });
 
-    // удалить ушедшие
-    for (let i = blocks.length - 1; i >= 0; i--) {
-      if (blocks[i].x > canvas.width + blocks[i].size) {
-        blocks.splice(i, 1);
-      }
-    }
-
+    // Remove off-screen blocks
+    blocks = blocks.filter(b => b.x <= canvas.width + b.size);
     handleCollisions();
   }
 
-  setInterval(() => {
-    if (blocks.length < 15) generateBlock();
-  }, 2000);
-
   function animate() {
-    drawFrame();
+    draw();
     requestAnimationFrame(animate);
   }
 
+  setInterval(generateBlock, 2000);
   animate();
 }
 
-
+// ====== INITIALIZATION ======
 document.addEventListener("DOMContentLoaded", () => {
-  applyLanguage();     // ⬅️ перевод всех элементов на нужный язык
-  startHashWave();     // ⬅️ запуск анимации блоков
-});
-
-
-
-
-
-
-
-
-
-
-
-// === THEME SWITCHER ===
-// === Theme Switcher ===
-function toggleTheme() {
-  const current = localStorage.getItem("theme") || "dark";
-  const next = current === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", next);
+  applyLanguage();
   applyTheme();
-}
-function applyTheme() {
-  const theme = localStorage.getItem("theme") || "dark";
-  document.body.classList.remove("dark-theme","light-theme");
-  document.body.classList.add(theme + "-theme");
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  // уже есть: applyLanguage(); startHashWave();
-  applyTheme();
-  document.getElementById("lang-btn")?.addEventListener("click", toggleLanguage);
-  document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
-
   highlightActiveMenu();
   startHashWave();
 
-  const themeBtn = document.getElementById("theme-toggle");
-  if (themeBtn) {
-    themeBtn.addEventListener("click", toggleTheme);
-  }
+  document.getElementById("lang-btn")?.addEventListener("click", toggleLanguage);
+  document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
 });

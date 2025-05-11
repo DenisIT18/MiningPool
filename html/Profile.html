@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-i18n-title="nav-profile">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вход</title>
+  <title></title>
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
   <nav>
-    <div class="nav-brand"><a href="index.html">BTCAIWORK</a></div>
+    <div class="nav-brand"><a href="index.html">BtcAIworK</a></div>
     <div class="nav-links">
-      <a href="index.html" class="btn-nav">Главная</a>
-      <a href="dashboard.html" class="btn-nav">Статистика</a>
-      <a href="Tokens.html" class="btn-nav">Купить токены</a>
-      <a href="Staking.html" class="btn-nav">Стейкинг</a>
-      <a href="scripts.html" class="btn-nav">Скрипты</a>
-      <a href="Connection.html" class="btn-nav">Связь</a>
-      <a href="Roadmap.html" class="btn-nav">Дорожная</a>
+      <a href="index.html" class="btn-nav" data-i18n="nav-index"></a>
+      <a href="dashboard.html" class="btn-nav" data-i18n="nav-dashboard"></a>
+      <a href="Tokens.html" class="btn-nav" data-i18n="nav-tokens"></a>
+      <a href="Staking.html" class="btn-nav" data-i18n="nav-staking"></a>
+      <a href="Profile.html" class="btn-nav" data-i18n="nav-profile"></a>
+      <a href="scripts.html" class="btn-nav" data-i18n="nav-scripts"></a>
+      <a href="Connection.html" class="btn-nav" data-i18n="nav-connection"></a>
+      <a href="Roadmap.html" class="btn-nav" data-i18n="nav-roadmap"></a>
       <button id="theme-toggle" class="btn-nav">🌓</button>
       <button id="lang-btn" class="btn-nav">RU</button>
     </div>
   </nav>
 
   <main class="container">
-    <h2 id="auth-title">Вход</h2>
+    <h2 data-i18n="auth-title"></h2>
+
     <form id="auth-form">
-      <input type="text" id="login-email" placeholder="Bitcoin-кошелёк (хэш)" required />
-      <input type="password" id="login-password" placeholder="Пароль" required />
-      <button type="submit" id="auth-login-btn" class="btn-nav mt-3">Войти</button>
+      <input type="text"
+             data-i18n-placeholder="placeholder-login-email"
+             required>
+
+      <input type="password"
+             data-i18n-placeholder="placeholder-login-password"
+             required>
+
+      <button type="submit" class="btn-nav" data-i18n="btn-login"></button>
     </form>
-    <p><a href="reset-password.html" class="btn-nav mt-2">Забыли пароль?</a></p>
-    <p><a href="Register.html" class="btn-nav mt-1">Зарегистрироваться</a></p>
+
+    <p><a href="reset-password.html" class="btn-nav" data-i18n="link-forgot"></a></p>
+    <p><a href="Register.html"     class="btn-nav" data-i18n="link-register"></a></p>
   </main>
 
   <footer>
-    &copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.
+    <p data-i18n="footer-text"></p>
   </footer>
 
   <script src="../static/js/script.js"></script>
