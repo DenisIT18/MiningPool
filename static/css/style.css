@@ -1,111 +1,163 @@
-/* ============ Общая стилистика ============ */
+/* ============ Theme Variables ============ */
+:root {
+  --transition-time: 0.2s;
+}
+.dark-theme {
+  --bg: #000000;
+  --container-bg: #1a1a1a;
+  --fg: #eaeaea;
+  --heading-fg: #FFD700;
+  --accent: #FFD700;
+  --btn-text: #000000;
+}
+.light-theme {
+  --bg: #ffffff;
+  --container-bg: #f5f5f5;
+  --fg: #333333;
+  --heading-fg: #1E90FF;
+  --accent: #1E90FF;
+  --btn-text: #ffffff;
+}
+
+/* ============ Base Styles ============ */
+* {
+  box-sizing: border-box;
+}
 body {
-  background-color: #0e0e1a;
-  color: #f1f1f1;
-  font-family: "Segoe UI", sans-serif;
-  min-height: 100vh;
+  margin: 0;
+  padding-top: 50px; /* место под навбар */
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  transition: background-color var(--transition-time),
+              color var(--transition-time);
 }
-
-h1, h2, h3 {
-  color: #00ffff;
-  text-shadow: 0 0 5px #00ffff66;
+h1,h2,h3 {
+  margin: 0 0 0.5em;
+  color: var(--heading-fg);
+  font-weight: 600;
+  line-height: 1.2;
+  transition: color var(--transition-time);
 }
-
-#hashWave {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  background: #0e0e1a;
-}
-
 .container {
   flex: 1;
-  margin-top: 30px;
+  max-width: 1200px;
+  margin: 30px auto;
   padding: 20px;
-  background-color: #161625;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  background-color: var(--container-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background-color var(--transition-time);
+  overflow: hidden;
 }
 
-/* ====== Форма ====== */
+/* ============ Fixed Navigation ============ */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: var(--container-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color var(--transition-time);
+}
+.nav-brand a {
+  font-size: 14px;
+  text-transform: uppercase; 
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+.nav-links a,
+.nav-links button {
+  margin: 0;
+}
+
+/* ============ Buttons ============ */
+button, .btn, .btn-nav {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition-time),
+              color var(--transition-time),
+              border-color var(--transition-time);
+}
+button:hover, .btn:hover, .btn-nav:hover {
+  background-color: var(--accent);
+  color: var(--btn-text);
+  border-color: var(--accent);
+}
+
+/* ============ Forms ============ */
 input, select, textarea {
-  background-color: #10101a;
-  color: #ffffff;
-  border: 1px solid #00ffff;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  background-color: var(--container-bg);
+  color: var(--fg);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  transition: background-color var(--transition-time),
+              color var(--transition-time),
+              border-color var(--transition-time);
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
-  box-shadow: 0 0 8px #00ffff;
-  border-color: #00ffff;
+  box-shadow: 0 0 5px rgba(184,134,11,0.5);
+  border-color: var(--accent);
 }
 
-button, .btn {
-  background-color: #00ffff;
-  border: none;
-  color: #000;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-}
-button:hover, .btn:hover {
-  background-color: #00cccc;
-  color: white;
-}
-
-/* ====== Подвал ====== */
-footer {
-  background-color: transparent;
-  padding: 15px;
-  text-align: center;
-  color: #aaa;
-  margin-top: auto;
-}
-
-/* ====== Стили кнопок навигации ====== */
-.btn-nav {
-  margin: 5px;
-  background-color: #00ffff;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 14px;
-  transition: 0.3s;
-}
-.btn-nav:hover {
-  background-color: #00cccc;
-  color: white;
-}
-
-/* ====== Анимированный фон ====== */
-.bg-animated {
+/* ============ Animated Background ============ */
+.bg-animated, #hashWave {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; height: 100vh;
   z-index: -1;
+  background: var(--bg);
   overflow: hidden;
   pointer-events: none;
 }
 .hash-block {
   position: absolute;
-  width: 110px;
-  height: 28px;
-  background-color: #00ffff22;
-  color: #00ffff;
-  border: 1px solid #00ffff55;
-  font-size: 12px;
   padding: 4px 8px;
+  font-size: 12px;
   white-space: nowrap;
-  animation: float 25s linear infinite;
-  border-radius: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(184,134,11,0.4);
+  color: var(--accent);
+  background-color: rgba(184,134,11,0.1);
+  animation: float 20s linear infinite;
 }
 @keyframes float {
-  0% { transform: translateY(100vh) translateX(0); opacity: 0.4; }
-  100% { transform: translateY(-200px) translateX(200px); opacity: 0.1; }
+  0%   { transform: translateY(100vh) translateX(0);   opacity: 0.3; }
+  100% { transform: translateY(-200px) translateX(100vw); opacity: 0.1; }
+}
+
+/* ============ Footer ============ */
+footer {
+  margin-top: auto;
+  padding: 15px;
+  text-align: center;
+  color: var(--fg);
+  transition: color var(--transition-time);
 }

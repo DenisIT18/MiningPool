@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title id="page-title">BtcAIWork | Купить токены</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Купить токены</title>
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body class="bg-dark text-light">
-  <div class="bg-animated"></div>
-  <canvas id="hashWave" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
-  <header class="text-center mt-3">
-    <h1 class="text-info" id="title">BtcAIWork</h1>
-    <div class="d-flex flex-wrap justify-content-center mt-2">
-      <a href="index.html"><button class="btn btn-nav" id="nav-index">Главная</button></a>
-      <a href="dashboard.html"><button class="btn btn-nav" id="nav-dashboard">Статистика</button></a>
-      <a href="Tokens.html"><button class="btn btn-nav" id="nav-tokens">Купить токены</button></a>
-      <a href="Staking.html"><button class="btn btn-nav" id="nav-staking">Стейкинг</button></a>
-      <a href="Profile.html"><button class="btn btn-nav" id="nav-profile">Профиль</button></a>
-      <a href="scripts.html"><button class="btn btn-nav" id="nav-scripts">Скрипты</button></a>
-      <a href="Connection.html"><button class="btn btn-nav" id="nav-connection">Связь</button></a>
-      <a href="Roadmap.html"><button class="btn btn-nav" id="nav-roadmap">Дорожная карта</button></a>
-      <button id="lang-btn" onclick="toggleLanguage()" class="btn btn-sm btn-info ms-2">EN</button>
+<body>
+  <nav>
+    <div class="nav-brand"><a href="index.html">BTCAIWORK</a></div>
+    <div class="nav-links">
+      <a href="index.html" class="btn-nav">Главная</a>
+      <a href="dashboard.html" class="btn-nav">Статистика</a>
+      <a href="Tokens.html" class="btn-nav">Купить токены</a>
+      <a href="Staking.html" class="btn-nav">Стейкинг</a>
+      <a href="Profile.html" class="btn-nav">Профиль</a>
+      <a href="scripts.html" class="btn-nav">Скрипты</a>
+      <a href="Connection.html" class="btn-nav">Связь</a>
+      <a href="Roadmap.html" class="btn-nav">Дорожная</a>
+      <button id="theme-toggle" class="btn-nav">🌓</button>
+      <button id="lang-btn" class="btn-nav">RU</button>
     </div>
-  </header>
-  <main class="container mt-5 bg-black p-4 rounded">
-    <h2 id="main-title" class="mb-3 text-info">Купить токены</h2>
-    <p id="main-description" class="mb-4">Выберите количество токенов и укажите ваш BTC-кошелёк</p>
-    <form id="buyTokensForm">
-      <div class="mb-3">
-        <label for="wallet" id="label-wallet" class="form-label">Адрес кошелька</label>
-        <input type="text" class="form-control" id="wallet" required />
-      </div>
-      <div class="mb-3">
-        <label for="amount" id="label-amount" class="form-label">Количество токенов</label>
-        <input type="number" class="form-control" id="amount" min="1" value="10" required />
-      </div>
-      <button type="submit" id="btn-buy-tokens" class="btn btn-info w-100">Купить токены</button>
+  </nav>
+
+  <main class="container">
+    <h2 id="main-title">Купить токены</h2>
+    <form id="buy-form">
+      <label for="wallet">Адрес кошелька:</label>
+      <input type="text" id="wallet" required />
+      <label for="amount">Количество токенов:</label>
+      <input type="number" id="amount" min="1" value="10" required />
+      <button type="submit" class="btn-nav mt-3">Купить</button>
     </form>
   </main>
-  <footer class="text-center mt-5 text-muted"><p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p></footer>
+
+  <footer>
+    &copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.
+  </footer>
+
   <script src="../static/js/script.js"></script>
 </body>
 </html>

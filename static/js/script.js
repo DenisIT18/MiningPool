@@ -27,7 +27,7 @@ const translations = {
     "submit-button": "Отправить в стейкинг", "duration-30": "30 дней", "duration-60": "60 дней", "duration-90": "90 дней",
     "scripts-title": "Запуск Python-скриптов", "scripts-description": "Выберите скрипт из списка для запуска:", "script-output": "Результат выполнения будет здесь...",
     "contact-title": "Связь с нами", "contact-description": "По вопросам обращайтесь на почту:",
-    "roadmap-title": "Дорожная карта", "roadmap-description": "Этапы развития нашего пула",
+    "roadmap-title": "Дорожная карта", "roadmap-description": "Этапы развития нашего пула", "contact-description_1": "Ответим в течение 24 часов.",
     "th-stage": "Этап",
     "th-timeline": "Сроки",
     "th-tasks": "Задачи",
@@ -70,7 +70,8 @@ const translations = {
     "td-month1": "May 2025",
     "td-month2": "June 2025",
     "td-month3": "July 2025",
-    "td-month4": "September 2025"
+    "td-month4": "September 2025",
+    "contact-description_1": "We will respond within 24 hours."
   },
   de: {
     "nav-index": "Startseite", "nav-dashboard": "Statistik", "nav-tokens": "Token kaufen", "nav-staking": "Staking",
@@ -98,7 +99,8 @@ const translations = {
     "td-month1": "Mai 2025",
     "td-month2": "Juni 2025",
     "td-month3": "Juli 2025",
-    "td-month4": "September 2025"
+    "td-month4": "September 2025",
+    "contact-description_1": "Wir werden innerhalb von 24 Stunden antworten.",
   },
   zh: {
     "nav-index": "主页", "nav-dashboard": "统计", "nav-tokens": "购买代币", "nav-staking": "质押",
@@ -126,7 +128,8 @@ const translations = {
     "td-month1": "2025年5月",
     "td-month2": "2025年6月",
     "td-month3": "2025年7月",
-    "td-month4": "2025年9月"
+    "td-month4": "2025年9月",
+    "contact-description_1": "我们将在 24 小时内回复。",
   }
 };
 
@@ -353,4 +356,44 @@ function startHashWave() {
 document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();     // ⬅️ перевод всех элементов на нужный язык
   startHashWave();     // ⬅️ запуск анимации блоков
+});
+
+
+
+
+
+
+
+
+
+
+
+// === THEME SWITCHER ===
+// === Theme Switcher ===
+function toggleTheme() {
+  const current = localStorage.getItem("theme") || "dark";
+  const next = current === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", next);
+  applyTheme();
+}
+function applyTheme() {
+  const theme = localStorage.getItem("theme") || "dark";
+  document.body.classList.remove("dark-theme","light-theme");
+  document.body.classList.add(theme + "-theme");
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // уже есть: applyLanguage(); startHashWave();
+  applyTheme();
+  document.getElementById("lang-btn")?.addEventListener("click", toggleLanguage);
+  document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
+
+  highlightActiveMenu();
+  startHashWave();
+
+  const themeBtn = document.getElementById("theme-toggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", toggleTheme);
+  }
 });

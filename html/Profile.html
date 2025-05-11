@@ -2,43 +2,41 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title id="page-title">BtcAIWork | Вход</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход</title>
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body class="bg-dark text-light">
-  <div class="bg-animated"></div>
-  <canvas id="hashWave" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
-  <header class="text-center mt-3">
-    <h1 class="text-info" id="title">BtcAIWork</h1>
-    <div class="d-flex flex-wrap justify-content-center mt-2">
-      <a href="index.html"><button class="btn btn-nav" id="nav-index">Главная</button></a>
-      <a href="dashboard.html"><button class="btn btn-nav" id="nav-dashboard">Статистика</button></a>
-      <a href="Tokens.html"><button class="btn btn-nav" id="nav-tokens">Купить токены</button></a>
-      <a href="Staking.html"><button class="btn btn-nav" id="nav-staking">Стейкинг</button></a>
-      <a href="Profile.html"><button class="btn btn-nav" id="nav-profile">Профиль</button></a>
-      <a href="scripts.html"><button class="btn btn-nav" id="nav-scripts">Скрипты</button></a>
-      <a href="Connection.html"><button class="btn btn-nav" id="nav-connection">Связь</button></a>
-      <a href="Roadmap.html"><button class="btn btn-nav" id="nav-roadmap">Дорожная карта</button></a>
-      <button id="lang-btn" onclick="toggleLanguage()" class="btn btn-sm btn-info ms-2">EN</button>
+<body>
+  <nav>
+    <div class="nav-brand"><a href="index.html">BTCAIWORK</a></div>
+    <div class="nav-links">
+      <a href="index.html" class="btn-nav">Главная</a>
+      <a href="dashboard.html" class="btn-nav">Статистика</a>
+      <a href="Tokens.html" class="btn-nav">Купить токены</a>
+      <a href="Staking.html" class="btn-nav">Стейкинг</a>
+      <a href="scripts.html" class="btn-nav">Скрипты</a>
+      <a href="Connection.html" class="btn-nav">Связь</a>
+      <a href="Roadmap.html" class="btn-nav">Дорожная</a>
+      <button id="theme-toggle" class="btn-nav">🌓</button>
+      <button id="lang-btn" class="btn-nav">RU</button>
     </div>
-  </header>
-  <main class="container mt-5 bg-black p-4 rounded" style="max-width: 400px;">
-    <h2 id="auth-title" class="mb-4 text-center text-info">Авторизация</h2>
-    <form id="login-form">
-      <div class="mb-3">
-        <input type="text" id="login-email" class="form-control" placeholder="Bitcoin-кошелёк (хэш)" required />
-      </div>
-      <div class="mb-3">
-        <input type="password" id="login-password" class="form-control" placeholder="Пароль" required />
-      </div>
-      <button type="submit" id="auth-login-btn" class="btn btn-info w-100">Войти</button>
+  </nav>
+
+  <main class="container">
+    <h2 id="auth-title">Вход</h2>
+    <form id="auth-form">
+      <input type="text" id="login-email" placeholder="Bitcoin-кошелёк (хэш)" required />
+      <input type="password" id="login-password" placeholder="Пароль" required />
+      <button type="submit" id="auth-login-btn" class="btn-nav mt-3">Войти</button>
     </form>
-    <p class="mt-3 text-center"><a href="reset-password.html" id="forgot-password-link" class="text-info">Забыли пароль?</a></p>
-    <p class="mt-2 text-center" id="register-container"><span id="no-account-text">Нет аккаунта?</span> <a href="Register.html" id="register-link" class="text-info">Зарегистрироваться</a></p>
+    <p><a href="reset-password.html" class="btn-nav mt-2">Забыли пароль?</a></p>
+    <p><a href="Register.html" class="btn-nav mt-1">Зарегистрироваться</a></p>
   </main>
-  <footer class="text-center mt-5 text-muted"><p id="footer-text">© 2025 Bitcoin Solo Mining Pool. Все права защищены.</p></footer>
+
+  <footer>
+    &copy; 2025 Bitcoin Solo Mining Pool. Все права защищены.
+  </footer>
+
   <script src="../static/js/script.js"></script>
 </body>
 </html>
