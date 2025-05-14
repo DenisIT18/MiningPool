@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="nav-dashboard"></title>
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <nav>
-    <div class="nav-brand">
-      <a href="index.html">BtcAIworK</a>
-    </div>
+    <div class="nav-brand"><a href="index.html">BtcAIworK</a></div>
     <div class="nav-links">
       <a href="index.html" class="btn-nav" data-i18n="nav-index"></a>
       <a href="dashboard.html" class="btn-nav" data-i18n="nav-dashboard"></a>
@@ -30,9 +29,24 @@
 
   <main class="container text-center">
     <h2 data-i18n="dashboard-title"></h2>
-    <p><span data-i18n="miners-label"></span> <span id="miners-count">—</span></p>
-    <p><span data-i18n="current-block-label"></span> <span id="current-block">—</span></p>
-    <p><span data-i18n="hashrate-label"></span> <span id="hashrate">—</span></p>
+
+    <!-- BTC Wallet (для демонстрации статично) -->
+    <p><strong data-i18n="stat-wallet"></strong>: <span id="btc-wallet">bc1qexample12345...</span></p>
+
+    <!-- Блоки статистики -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;text-align:left;margin:20px auto;">
+      <div class="container"><strong data-i18n="stat-current-hashrate"></strong><br>320.5 TH/s</div>
+      <div class="container"><strong data-i18n="stat-avg-hashrate"></strong><br>298.2 TH/s</div>
+      <div class="container"><strong data-i18n="stat-unpaid"></strong><br>0.0142 BTC</div>
+      <div class="container"><strong data-i18n="stat-workers-online"></strong><br>42</div>
+      <div class="container"><strong data-i18n="stat-earnings-24h"></strong><br>0.0035 BTC</div>
+      <div class="container"><strong data-i18n="stat-earnings-30d"></strong><br>0.12 BTC</div>
+      <div class="container"><strong data-i18n="stat-last-share"></strong><br>14 сек назад</div>
+    </div>
+
+    <!-- График -->
+    <h3 style="margin-top:40px" data-i18n="stat-hashrate-chart"></h3>
+    <canvas id="hashrateChart" style="max-width:100%;height:300px;"></canvas>
   </main>
 
   <footer>

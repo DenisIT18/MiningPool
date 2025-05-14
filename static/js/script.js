@@ -26,7 +26,16 @@ const translations = {
   "btn-login": "Войти",
   "link-forgot": "Забыли пароль?",
   "link-register": "Зарегистрироваться",
-  "label-duration": "Срок:"
+  "label-duration": "Срок:",
+    "stat-wallet": "Ваш BTC-кошелёк",
+    "stat-current-hashrate": "Текущий хешрейт",
+    "stat-avg-hashrate": "Средний хешрейт",
+    "stat-unpaid": "Невыплачено",
+    "stat-workers-online": "Майнеров онлайн",
+    "stat-earnings-24h": "Заработано за 24ч",
+    "stat-earnings-30d": "Заработано за 30д",
+    "stat-last-share": "Последняя шара",
+    "stat-hashrate-chart": "График хешрейта"
   },
   en: {
     "nav-index": "Home", "nav-dashboard": "Statistics", "nav-tokens": "Buy Tokens", "nav-staking": "Staking",
@@ -52,7 +61,16 @@ const translations = {
   "btn-login": "Login",
   "link-forgot": "Forgot password?",
   "link-register": "Register",
-  "label-duration": "Duration:"
+  "label-duration": "Duration:",
+    "stat-wallet": "Your BTC Wallet",
+    "stat-current-hashrate": "Current Hashrate",
+    "stat-avg-hashrate": "Average Hashrate",
+    "stat-unpaid": "Unpaid",
+    "stat-workers-online": "Workers Online",
+    "stat-earnings-24h": "Earned 24h",
+    "stat-earnings-30d": "Earned 30d",
+    "stat-last-share": "Last Share",
+    "stat-hashrate-chart": "Hashrate Chart"
   },
   de: {
     "nav-index": "Startseite", "nav-dashboard": "Statistik", "nav-tokens": "Token kaufen", "nav-staking": "Staking",
@@ -78,7 +96,16 @@ const translations = {
   "btn-login": "Einloggen",
   "link-forgot": "Passwort vergessen?",
   "link-register": "Registrieren",
-  "label-duration": "Dauer:"
+  "label-duration": "Dauer:",
+    "stat-wallet": "Ihre BTC-Wallet",
+    "stat-current-hashrate": "Aktuelle Hashrate",
+    "stat-avg-hashrate": "Durchschn. Hashrate",
+    "stat-unpaid": "Nicht ausgezahlt",
+    "stat-workers-online": "Miner online",
+    "stat-earnings-24h": "Ertrag 24h",
+    "stat-earnings-30d": "Ertrag 30d",
+    "stat-last-share": "Letzter Share",
+    "stat-hashrate-chart": "Hashrate Diagramm"
   },
   zh: {
     "nav-index": "主页", "nav-dashboard": "统计", "nav-tokens": "购买代币", "nav-staking": "质押",
@@ -104,7 +131,16 @@ const translations = {
   "btn-login": "登录",
   "link-forgot": "忘记密码？",
   "link-register": "注册",
-  "label-duration": "时长："
+  "label-duration": "时长：",
+    "stat-wallet": "您的比特币钱包",
+    "stat-current-hashrate": "当前算力",
+    "stat-avg-hashrate": "平均算力",
+    "stat-unpaid": "未支付",
+    "stat-workers-online": "在线矿工",
+    "stat-earnings-24h": "24小时收益",
+    "stat-earnings-30d": "30天收益",
+    "stat-last-share": "最近一次提交",
+    "stat-hashrate-chart": "算力图表"
   }
 };
 
@@ -327,4 +363,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("lang-btn")?.addEventListener("click", toggleLanguage);
   document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
+});
+
+// ====== HASHRATE CHART FOR DASHBOARD ======
+document.addEventListener("DOMContentLoaded", () => {
+  const chartCanvas = document.getElementById("hashrateChart");
+  if (!chartCanvas) return;
+
+  const ctx = chartCanvas.getContext("2d");
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+      datasets: [{
+        label: 'TH/s',
+        data: Array.from({ length: 24 }, () => 280 + Math.random() * 60),
+        borderColor: 'gold',
+        backgroundColor: 'rgba(255, 215, 0, 0.2)',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
 });
