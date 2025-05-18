@@ -395,3 +395,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+function updateStatus() {
+  fetch("http://localhost:3001/api/status")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("current-block").textContent = data.blockCount;
+      document.getElementById("hashrate").textContent = (data.hashRate / 1e12).toFixed(2) + " TH/s";
+      document.getElementById("difficulty").textContent = data.difficulty.toLocaleString();
+      document.getElementById("mempool").textContent = `${data.mempoolSize} txs / ${Math.round(data.mempoolBytes / 1024)} KB`;
+      document.getElementById("block-hash").textContent = data.blockHash;
+      document.getElementById("block-tx").textContent = data.blockTxs;
+      document.getElementById("block-time").textContent = data.latestBlockTime;
+    })
+    .catch(err => console.error("Ошибка получения данных от ноды:", err));
+}
+
+updateStatus();                 // Первый запуск сразу
+setInterval(updateStatus, 60000); // Затем каждые 60 секунд
