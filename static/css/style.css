@@ -3,21 +3,23 @@
   --transition-time: 0.2s;
 }
 .dark-theme {
-  --bg: #000000;
-  --container-bg: #1a1a1a;
-  --fg: #eaeaea;
-  --heading-fg: #FFD700;
-  --accent: #FFD700;
-  --btn-text: #000000;
+  --bg: #000000;            /* Черный фон */
+  --container-bg: #444444;  /* Черный контейнер */
+  --fg: #ffffff;            /* Белый текст */
+  --heading-fg: #ffffff;    /* Белый заголовок */
+  --accent: #ffffff;        /* Белый акцент */
+  --btn-text: #000000;      /* Черный текст на белой кнопке */
 }
+
 .light-theme {
-  --bg: #ffffff;
-  --container-bg: #f5f5f5;
-  --fg: #333333;
-  --heading-fg: #1E90FF;
-  --accent: #1E90FF;
-  --btn-text: #ffffff;
+  --bg: #ffffff;            /* Белый фон */
+  --container-bg: #b6b6b6;  /* Белый контейнер */
+  --fg: #000000;            /* Черный текст */
+  --heading-fg: #000000;    /* Черный заголовок */
+  --accent: #000000;        /* Черный акцент */
+  --btn-text: #ffffff;      /* Белый текст на черной кнопке */
 }
+
 
 /* ============ Base Styles ============ */
 * {
